@@ -1,8 +1,8 @@
 services:
   langflow:
     build: 
-      context: .
-      dockerfile: build_and_push.Dockerfile
+      context: ..
+      dockerfile: docker/build_and_push.Dockerfile
     ports:
       - 7860:7860
     environment:

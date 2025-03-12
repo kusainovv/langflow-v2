@@ -17,11 +17,52 @@ from langchain_core.tools import BaseTool
 from pydantic import BaseModel
 from requests.exceptions import RequestException
 
-from langflow.components.tools.mcp_stdio import create_input_schema_from_json_schema
+# from langflow.components.tools.mcp_stdio import create_input_schema_from_json_schema
 from langflow.services.cache.utils import CacheMiss
 
 client_lock = threading.Lock()
 client = None
+
+def create_input_schema_from_json_schema(schema: dict[str, Any]) -> type[BaseModel]:
+    """Converts a JSON schema into a Pydantic model dynamically.
+
+    :param schema: The JSON schema as a dictionary.
+    :return: A Pydantic model class.
+    """
+    if schema.get("type") != "object":
+        msg = "JSON schema must be of type 'object' at the root level."
+        raise ValueError(msg)
+
+    fields = {}
+    properties = schema.get("properties", {})
+    required_fields = set(schema.get("required", []))
+
+    for field_name, field_def in properties.items():
+        # Extract type
+        field_type_str = field_def.get("type", "str")  # Default to string type if not specified
+        field_type = {
+            "string": str,
+            "str": str,
+            "integer": int,
+            "int": int,
+            "number": float,
+            "boolean": bool,
+            "array": list,
+            "object": dict,
+        }.get(field_type_str, Any)
+
+        # Extract description and default if present
+        field_metadata = {"description": field_def.get("description", "")}
+        if field_name not in required_fields:
+            field_metadata["default"] = field_def.get("default", None)
+
+        # Create Pydantic field
+        fields[field_name] = (field_type, Field(**field_metadata))
+
+    # Dynamically create the model
+    return create_model("InputSchema", **fields)
+
+
 
 
 def get_patched_openai_client(shared_component_cache):

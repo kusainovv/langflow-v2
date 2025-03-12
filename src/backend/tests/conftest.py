@@ -73,7 +73,6 @@ def blockbuster(request):
                 .can_block_in("httpx/_client.py", "_init_transport")
                 .can_block_in("rich/traceback.py", "_render_stack")
                 .can_block_in("langchain_core/_api/internal.py", "is_caller_internal")
-                .can_block_in("langchain_core/runnables/utils.py", "get_function_nonlocals")
             )
 
             for func in ["os.stat", "os.path.abspath", "os.scandir"]:
@@ -402,9 +401,8 @@ async def client_fixture(
 
 
 @pytest.fixture
-def runner(tmp_path):
-    env = {"LANGFLOW_DATABASE_URL": f"sqlite:///{tmp_path}/test.db"}
-    return CliRunner(env=env)
+def runner():
+    return CliRunner()
 
 
 @pytest.fixture

@@ -4,7 +4,6 @@ import {
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import SkeletonGroup from "@/components/ui/skeletonGroup";
 import { useAddComponent } from "@/hooks/useAddComponent";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { useStoreStore } from "@/stores/storeStore";
@@ -45,7 +44,7 @@ interface FlowSidebarComponentProps {
   setShowLegacy: (value: boolean) => void;
 }
 
-export function FlowSidebarComponent({ isLoading }: { isLoading?: boolean }) {
+export function FlowSidebarComponent() {
   const { data, templates } = useTypesStore(
     useCallback(
       (state) => ({
@@ -121,12 +120,19 @@ export function FlowSidebarComponent({ isLoading }: { isLoading?: boolean }) {
   const sortedCategories = useMemo(() => {
     if (!searchResults || !searchFilteredData) return [];
 
-    return Object.keys(searchFilteredData).toSorted((a, b) =>
-      searchResults.fuseCategories.indexOf(b) <
-      searchResults.fuseCategories.indexOf(a)
-        ? 1
-        : -1,
-    );
+    return Object.keys(searchFilteredData)
+      .filter(
+        (category) =>
+          Object.keys(searchFilteredData[category]).length > 0 &&
+          (CATEGORIES.find((c) => c.name === category) ||
+            BUNDLES.find((b) => b.name === category)),
+      )
+      .toSorted((a, b) =>
+        searchResults.fuseCategories.indexOf(b) <
+        searchResults.fuseCategories.indexOf(a)
+          ? 1
+          : -1,
+      );
   }, [searchResults, searchFilteredData, CATEGORIES, BUNDLES]);
 
   const finalFilteredData = useMemo(() => {
@@ -299,6 +305,16 @@ export function FlowSidebarComponent({ isLoading }: { isLoading?: boolean }) {
     [dataFilter],
   );
 
+  const hasCategoryItems = useMemo(
+    () =>
+      CATEGORIES.some(
+        (item) =>
+          dataFilter[item.name] &&
+          Object.keys(dataFilter[item.name]).length > 0,
+      ),
+    [dataFilter],
+  );
+
   return (
     <Sidebar
       collapsible="offcanvas"
@@ -323,65 +339,50 @@ export function FlowSidebarComponent({ isLoading }: { isLoading?: boolean }) {
         setFilterData={setFilterData}
         data={data}
       />
-
       <SidebarContent>
-        {isLoading ? (
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-col gap-1 p-3">
-              <SkeletonGroup count={13} className="my-0.5 h-7" />
-            </div>
-            <div className="h-8" />
-            <div className="flex flex-col gap-1 px-3 pt-2">
-              <SkeletonGroup count={21} className="my-0.5 h-7" />
-            </div>
-          </div>
-        ) : (
+        {hasResults ? (
           <>
-            {hasResults ? (
-              <>
-                <CategoryGroup
-                  dataFilter={dataFilter}
-                  sortedCategories={sortedCategories}
-                  CATEGORIES={CATEGORIES}
-                  openCategories={openCategories}
-                  setOpenCategories={setOpenCategories}
-                  search={search}
-                  nodeColors={nodeColors}
-                  chatInputAdded={chatInputAdded}
-                  onDragStart={onDragStart}
-                  sensitiveSort={sensitiveSort}
-                />
-
-                {hasBundleItems && (
-                  <MemoizedSidebarGroup
-                    BUNDLES={BUNDLES}
-                    search={search}
-                    sortedCategories={sortedCategories}
-                    dataFilter={dataFilter}
-                    nodeColors={nodeColors}
-                    chatInputAdded={chatInputAdded}
-                    onDragStart={onDragStart}
-                    sensitiveSort={sensitiveSort}
-                    openCategories={openCategories}
-                    setOpenCategories={setOpenCategories}
-                    handleKeyDownInput={handleKeyDownInput}
-                  />
-                )}
-              </>
-            ) : (
-              <NoResultsMessage onClearSearch={handleClearSearch} />
+            {hasCategoryItems && (
+              <CategoryGroup
+                dataFilter={dataFilter}
+                sortedCategories={sortedCategories}
+                CATEGORIES={CATEGORIES}
+                openCategories={openCategories}
+                setOpenCategories={setOpenCategories}
+                search={search}
+                nodeColors={nodeColors}
+                chatInputAdded={chatInputAdded}
+                onDragStart={onDragStart}
+                sensitiveSort={sensitiveSort}
+              />
+            )}
+            {hasBundleItems && (
+              <MemoizedSidebarGroup
+                BUNDLES={BUNDLES}
+                search={search}
+                sortedCategories={sortedCategories}
+                dataFilter={dataFilter}
+                nodeColors={nodeColors}
+                chatInputAdded={chatInputAdded}
+                onDragStart={onDragStart}
+                sensitiveSort={sensitiveSort}
+                openCategories={openCategories}
+                setOpenCategories={setOpenCategories}
+                handleKeyDownInput={handleKeyDownInput}
+              />
             )}
           </>
+        ) : (
+          <NoResultsMessage onClearSearch={handleClearSearch} />
         )}
       </SidebarContent>
-      <SidebarFooter className="border-t p-4 py-3">
+      {/* <SidebarFooter className="border-t p-4 py-3">
         <SidebarMenuButtons
           hasStore={hasStore}
           customComponent={customComponent}
           addComponent={addComponent}
-          isLoading={isLoading}
         />
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   );
 }

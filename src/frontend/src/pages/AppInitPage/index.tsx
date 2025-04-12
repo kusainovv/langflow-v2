@@ -13,6 +13,7 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { LoadingPage } from "../LoadingPage";
+import { PreloadScreen } from "@/features/PreloadScreen/ui";
 
 export function AppInitPage() {
   const dark = true
@@ -49,17 +50,30 @@ export function AppInitPage() {
     // }
   // }, [dark]);
 
+  const totalSteps = 3;
+let currentProgress = 0;
+
+if (isFetched) currentProgress++;
+if (typesLoaded) currentProgress++;
+if (isExamplesFetched) currentProgress++;
+
+const percent = Math.floor((currentProgress / totalSteps) * 100);
+
   return (
     //need parent component with width and height
     <>
       {isLoaded ? (
         (isLoading || !isFetched || !isExamplesFetched || !typesLoaded) && (
-          <LoadingPage overlay />
+          <LoadingPage overlay progress={percent} />
         )
       ) : (
         <CustomLoadingPage />
       )}
-      {isFetched && isExamplesFetched && typesLoaded && <Outlet />}
+      {isFetched && isExamplesFetched && typesLoaded && <>
+      
+      <Outlet />
+      <PreloadScreen />
+      </>}
     </>
   );
 }

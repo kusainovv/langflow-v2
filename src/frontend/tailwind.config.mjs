@@ -50,11 +50,16 @@ const config = {
             "offset-distance": "100%",
           },
         },
+        'bg-to-gray': {
+          '0%': { backgroundColor: '#000000' },
+          '100%': { backgroundColor: '#c0c0c0' },
+        },
       },
       animation: {
         wiggle: "wiggle 150ms ease-in-out 1",
         "slow-wiggle": "wiggle 500ms ease-in-out 1",
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        'bg-to-gray': 'bg-to-gray 0.7s ease-in-out forwards',
       },
       colors: {
         "frozen-blue": "rgba(128, 190, 219, 0.86)", // Custom blue color for the frozen effect

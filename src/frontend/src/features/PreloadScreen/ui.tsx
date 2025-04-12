@@ -172,12 +172,12 @@ export const PreloadScreen = () => {
       // At 3 seconds, show the gray fill
       setTimeout(() => {
         setIsFilling(true);
-      }, 2400); // gray fill shows at 3s
+      }, 1400); // gray fill shows at 3s
   
-      // At 4 seconds, unmount everything
+      // At 2 seconds, unmount everything
       setTimeout(() => {
         setIsDone(true);
-      }, 3000);
+      }, 2000);
     };
 
     if (isDone) {

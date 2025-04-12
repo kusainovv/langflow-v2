@@ -4,9 +4,11 @@ import { cn } from "@/utils/utils";
 export function LoadingPage({
   overlay = false,
   progress,
+  label,
 }: {
   overlay?: boolean;
   progress?: number;
+  label?: string;
 }) {
   return (
     <div
@@ -15,7 +17,7 @@ export function LoadingPage({
         overlay && "fixed left-0 top-0 z-[999]"
       )}
     >
-      <LoadingComponent remSize={50} progress={progress} />
+      <LoadingComponent remSize={50} progress={progress} label={label} />
     </div>
   );
 }

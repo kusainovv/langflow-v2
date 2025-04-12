@@ -50,21 +50,33 @@ export function AppInitPage() {
     // }
   // }, [dark]);
 
-  const totalSteps = 3;
 let currentProgress = 0;
 
 if (isFetched) currentProgress++;
 if (typesLoaded) currentProgress++;
 if (isExamplesFetched) currentProgress++;
+if (!isLoading) currentProgress++; // ✅ Consider isLoading "done" when false
 
-const percent = Math.floor((currentProgress / totalSteps) * 100);
+const loadingSteps = [
+  { label: "Authenticating user...", done: isFetched },
+  { label: "Loading types...", done: typesLoaded },
+  { label: "Fetching examples...", done: isExamplesFetched },
+  { label: "Initializing flows...", done: !isLoading },
+];
+
+const totalSteps = loadingSteps.length;
+const completedSteps = loadingSteps.filter((step) => step.done).length;
+const percent = Math.floor((completedSteps / totalSteps) * 100);
+
+// Find the first step that isn't done
+const currentStep = loadingSteps.find((step) => !step.done)?.label ?? "Launching VyloOS...";
 
   return (
     //need parent component with width and height
     <>
       {isLoaded ? (
         (isLoading || !isFetched || !isExamplesFetched || !typesLoaded) && (
-          <LoadingPage overlay progress={percent} />
+          <LoadingPage overlay progress={percent} label={currentStep} />
         )
       ) : (
         <CustomLoadingPage />

@@ -15,7 +15,7 @@ export default function LoadingComponent({
   return (
     <div role="status" className="flex flex-col items-center justify-center gap-4 w-[300px] max-w-[80vw]">
        <span className="text-sm text-black animate-pulse">{label}</span>
-      <ProgressBar value={progress} />
+      <ProgressBar variant="tile" value={progress} />
     </div>
   );
 }

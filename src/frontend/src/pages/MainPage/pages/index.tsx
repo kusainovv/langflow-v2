@@ -57,9 +57,35 @@ export default function CollectionPage(): JSX.Element {
   };
 
   return (
-    <SidebarProvider width="280px">
+    <SidebarProvider>
+      <div className="py-2 px-1 w-full h-full bg-[#008080]">
+        <div className="w-fit grid grid-cols-4">
+          
+        <Outlet />
+
+        <EmptyPage setOpenModal={setOpenModal} />
+          {/* <SideBarFoldersButtonsComponent /> */}
+        </div>
+      {/* {flows &&
+          examples &&
+          folders &&
+          (flows?.length !== examples?.length || folders?.length > 1) && (
+            <SideBarFoldersButtonsComponent
+              handleChangeFolder={(id: string) => {
+                navigate(`all/folder/${id}`);
+              }}
+              handleDeleteFolder={(item) => {
+                setFolderToEdit(item);
+                setOpenDeleteFolderModal(true);
+              }}
+            />
+          )} */}
+      </div>
+
+
+
       {/* <h1>main page test</h1> */}
-      {flows &&
+      {/* {flows &&
         examples &&
         folders &&
         (flows?.length !== examples?.length || folders?.length > 1) && (
@@ -101,7 +127,7 @@ export default function CollectionPage(): JSX.Element {
         openDeleteFolderModal={openDeleteFolderModal}
         setOpenDeleteFolderModal={setOpenDeleteFolderModal}
         handleDeleteFolder={handleDeleteFolder}
-      />
+      /> */}
     </SidebarProvider>
   );
 }

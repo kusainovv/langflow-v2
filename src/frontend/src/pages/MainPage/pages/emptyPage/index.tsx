@@ -1,6 +1,7 @@
 import LangflowLogo from "@/assets/LangflowLogo.svg?react";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { Button } from "@/components/ui/button";
+import { DesktopIcon } from "@/components/ui/desktop-icon";
 import { ENABLE_NEW_LOGO } from "@/customization/feature-flags";
 import { useFolderStore } from "@/stores/foldersStore";
 
@@ -11,8 +12,9 @@ type EmptyPageProps = {
 export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
   const folders = useFolderStore((state) => state.folders);
 
+  return <DesktopIcon iconSrc="https://win98icons.alexmeub.com/icons/png/notepad-4.png" label="New Workflow"  />
   return (
-    <div className="m-0 h-full w-full bg-secondary p-0">
+    <div className="m-0 bg-secondary p-0">
       <div className="text-container">
         <div className="relative z-20 flex w-full flex-col items-center justify-center gap-2">
           {/* {ENABLE_NEW_LOGO ? (
@@ -47,7 +49,7 @@ export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
           </div>
         </div>
       </div>
-      <div className="gradient-bg">
+      <div> {/**className="gradient-bg" */}
         {/* <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>
             <filter id="lf-balls">

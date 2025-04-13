@@ -77,21 +77,25 @@ const HomePage = ({ type }) => {
     flows?.find((flow) => flow.folder_id === (folderId ?? myCollectionId)) ===
     undefined;
 
+
+    return data.flows.map((flow) => (
+      <ListComponent key={flow.id} flowData={flow} />
+    ))
   return (
-    <CardsWrapComponent
+    <>
+      {/* CardsWrapComponent
       onFileDrop={handleFileDrop}
-      dragMessage={`Drag your ${folderName} here`}
-    >
+      dragMessage={`Drag your ${folderName} here`} */}
       <div
-        className="flex h-full w-full flex-col overflow-y-auto"
+        // className="flex h-full w-full flex-col overflow-y-auto"
         data-testid="cards-wrapper"
       >
-        <div className="flex h-full w-full flex-col xl:container">
+        <div className=""> {/**flex h-full w-full flex-col xl:container */}
           {ENABLE_DATASTAX_LANGFLOW && <CustomBanner />}
 
           {/* mt-10 to mt-8 for Datastax LF */}
-          <div className="flex flex-1 flex-col justify-start px-5 pt-10">
-            <div className="flex h-full flex-col justify-start">
+          <div className=""> {/**flex flex-1 flex-col justify-start px-5 pt-10 */}
+            <div className=""> {/**flex h-full flex-col justify-start */}
               {/* <HeaderComponent
                 folderName={folderName}
                 flowType={flowType}
@@ -105,32 +109,35 @@ const HomePage = ({ type }) => {
               {isEmptyFolder ? (
                 <EmptyFolder setOpenModal={setNewProjectModal} />
               ) : (
-                <div className="mt-6">
+                <div>
                   {isLoading ? (
                     view === "grid" ? (
-                      <div className="mt-1 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+                      <div className=""> {/**mt-1 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 */}
                         <GridSkeleton />
                         <GridSkeleton />
                       </div>
                     ) : (
-                      <div className="flex flex-col">
+                      <div className=""> {/**flex flex-col */}
                         <ListSkeleton />
                         <ListSkeleton />
                       </div>
                     )
                   ) : data && data.pagination.total > 0 ? (
                     view === "grid" ? (
-                      <div className="mt-1 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+                      <div> {/**className="mt-1 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3" */}
                         {data.flows.map((flow) => (
                           <GridComponent key={flow.id} flowData={flow} />
                         ))}
                       </div>
                     ) : (
-                      <div className="flex flex-col">
-                        {data.flows.map((flow) => (
+                      // <div className="flex flex-col">
+                      <>
+                       {data.flows.map((flow) => (
                           <ListComponent key={flow.id} flowData={flow} />
                         ))}
-                      </div>
+                      </>
+                       
+                      // </div> 
                     )
                   ) : flowType === "flows" ? (
                     <div className="pt-2 text-center text-sm text-black">
@@ -185,7 +192,7 @@ const HomePage = ({ type }) => {
         setOpenDeleteFolderModal={() => {}}
         handleDeleteFolder={() => {}}
       />
-    </CardsWrapComponent>
+    </>
   );
 };
 

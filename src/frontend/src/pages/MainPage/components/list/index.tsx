@@ -21,6 +21,7 @@ import useDescriptionModal from "../../hooks/use-description-modal";
 import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
+import { DesktopIcon } from "@/components/ui/desktop-icon";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -72,24 +73,26 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
 
   return (
     <>
-      <Card
-        key={flowData.id}
+      <>
+        {/* key={flowData.id}
         draggable
         onDragStart={onDragStart}
         onClick={handleClick}
         className={`my-2 flex flex-row bg-light-gray ${
           isComponent ? "cursor-default" : "cursor-pointer"
         } group justify-between border border-border p-4`}
-        data-testid="list-card"
-      >
+        data-testid="list-card" */}
+        <DesktopIcon label={flowData.name} iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
         {/* left side */}
-        <div
+        {/* <div
           className={`flex min-w-0 ${
             isComponent ? "cursor-default" : "cursor-pointer"
-          } items-center gap-4`}
-        >
+          } flex flex-col items-start overflow-hidden`}
+        > */}
           {/* Icon */}
-          <div
+          {/* <img src={"https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png"} width={32} height={32} /> */}
+
+          {/* <div
             className={cn(
               `item-center flex justify-center p-3`,
               swatchColors[swatchIndex],
@@ -100,27 +103,27 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
               aria-hidden="true"
               className="flex h-5 w-5 items-center justify-center"
             />
-          </div>
+          </div> */}
 
-          <div className="flex min-w-0 flex-col justify-start">
-            <div className="line-clamp-1 flex min-w-0 items-baseline truncate max-md:flex-col">
-              <div className="text-md flex truncate pr-2   max-md:w-full">
-                <span className="truncate">{flowData.name}</span>
-              </div>
-              <div className="item-baseline flex text-xs   ">
+          {/* <div className="flex flex-col justify-start"> */}
+            {/* <div className="line-clamp-1 flex min-w-0 items-baseline truncate max-md:flex-col"> */}
+              {/* <div className="text-xs flex pr-2   max-md:w-full"> */}
+                {/* <span className="text-xs">{flowData.name}</span> */}
+              {/* </div> */}
+              {/* <div className="item-baseline flex text-xs   ">
                 Edited {timeElapsed(flowData.updated_at)} ago
-              </div>
-            </div>
-            <div className="overflow-hidden text-sm text-black">
+              </div> */}
+            {/* </div> */}
+            {/* <div className="overflow-hidden text-sm text-black">
               <span className="block max-w-[110ch] truncate">
                 {flowData.description}
               </span>
-            </div>
-          </div>
-        </div>
+            </div> */}
+          {/* </div> */}
+        {/* </div> */}
 
         {/* right side */}
-        <div className="ml-5 flex items-center gap-2">
+        {/* <div className="ml-5 flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger  asChild>
               <Button
@@ -150,10 +153,10 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
               />
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
-      </Card>
+        </div> */}
+      </>
 
-      {openDelete && (
+      {/* {openDelete && (
         <DeleteConfirmationModal
           open={openDelete}
           setOpen={setOpenDelete}
@@ -162,7 +165,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         >
           <></>
         </DeleteConfirmationModal>
-      )}
+      )} */}
     </>
   );
 };

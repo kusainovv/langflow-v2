@@ -23,6 +23,9 @@ import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
 import { DesktopIcon } from "@/components/ui/desktop-icon";
 import { MenuList, MenuListItem, Separator } from "react95";
+import useSelectOptionsChange from "../../hooks/use-select-options-change";
+import useDuplicateFlows from "../../hooks/use-handle-duplicate";
+import { downloadFlow } from "@/utils/reactflowUtils";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -38,6 +41,26 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   );
   const { getIcon } = useGetTemplateStyle(flowData);
 
+  const { handleDuplicate } = useDuplicateFlows({
+    selectedFlowsComponentsCards: [flowData.id],
+    allFlows: [flowData],
+    setSuccessData,
+  });
+
+  const handleExport = () => {
+    downloadFlow(flowData, flowData.name, flowData.description);
+    setSuccessData({ title: `${flowData.name} exported successfully` });
+  };
+
+  const { handleSelectOptionsChange } = useSelectOptionsChange(
+    [flowData.id],
+    setErrorData,
+    setOpenDelete,
+    handleDuplicate,
+    handleExport,
+  );
+
+  
   const editFlowLink = `/flow/${flowData.id}${folderId ? `/folder/${folderId}` : ""}`;
 
   const handleClick = async () => {
@@ -62,6 +85,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
       });
   };
 
+
   const { onDragStart } = useDragStart(flowData);
 
   const descriptionModal = useDescriptionModal([flowData?.id], "flow");
@@ -75,11 +99,20 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     const ContextMenu = ({ x, y }) => {
       return (
         <MenuList className="xp-menu bg-red-500" style={{ top: y, left: x, position: 'absolute' }}>
-          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Open</MenuListItem>
+          <MenuListItem   onClick={(e) => {
+          e.stopPropagation();
+          handleSelectOptionsChange("export");
+        }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Download</MenuListItem>
           <Separator />
-          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Properties</MenuListItem>
-          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Rename</MenuListItem>
-          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
+          <MenuListItem onClick={(e) => {
+          e.stopPropagation();
+          handleSelectOptionsChange("duplicate");
+        }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Duplicate</MenuListItem>
+          <MenuListItem  onClick={(e) => {
+          e.stopPropagation();
+          setOpenDelete(true);
+        }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
+        
         </MenuList>
       );
     }
@@ -90,6 +123,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
       onDragStart={onDragStart}
       onClick={handleClick}
       >
+
         {/* key={flowData.id}
         draggable
         onDragStart={onDragStart}
@@ -173,6 +207,17 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           </DropdownMenu>
         </div> */}
       </div>
+
+      {openDelete && (
+        <DeleteConfirmationModal
+          open={openDelete}
+          setOpen={setOpenDelete}
+          onConfirm={handleDelete}
+          description={descriptionModal}
+        >
+          <></>
+        </DeleteConfirmationModal>
+      )}
 
       {/* {openDelete && (
         <DeleteConfirmationModal

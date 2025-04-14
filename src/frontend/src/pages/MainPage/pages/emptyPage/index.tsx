@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { DesktopIcon } from "@/components/ui/desktop-icon";
 import { ENABLE_NEW_LOGO } from "@/customization/feature-flags";
 import { useFolderStore } from "@/stores/foldersStore";
+import useAddFlow from "@/hooks/flows/use-add-flow";
+import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
+import { useParams } from "react-router-dom";
+import { track } from "@/customization/utils/analytics";
 
 type EmptyPageProps = {
   setOpenModal: (open: boolean) => void;
@@ -11,8 +15,20 @@ type EmptyPageProps = {
 
 export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
   const folders = useFolderStore((state) => state.folders);
+  const addFlow = useAddFlow();
+  const navigate = useCustomNavigate();
+  const { folderId } = useParams();
 
-  return <div onClick={() => setOpenModal(true)}>
+  return <div   onClick={() => {
+    // setOpenModal(true)
+    addFlow().then((id) => {
+      navigate(
+        `/flow/${id}${folderId ? `/folder/${folderId}` : ""}`,
+      );
+    });
+    track("New Flow Created", { template: "Blank Flow" });
+
+  }}>
      <DesktopIcon iconSrc="https://win98icons.alexmeub.com/icons/png/notepad-4.png" label="New Workflow"  />
   </div>
   return (

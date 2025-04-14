@@ -23,13 +23,35 @@ import { ShadowForgeIcon } from "@/icons/ShadowForge";
 import moment from "moment";
 
 export default function AppTaskbar(): JSX.Element {
+
+  const [currentTime, setCurrentTime] = useState(moment().format("hh:mm A"));
+
   const notificationCenter = useAlertStore((state) => state.notificationCenter);
   const navigate = useCustomNavigate();
   const [activeState, setActiveState] = useState<"notifications" | null>(null);
   const lastPath = window.location.pathname.split("/").filter(Boolean).pop();
   const notificationRef = useRef<HTMLButtonElement | null>(null);
   const notificationContentRef = useRef<HTMLDivElement | null>(null);
-  const [currentTime, setCurrentTime] = useState(moment().format("hh:mm A"));
+  // useTheme();
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      const isNotificationButton = notificationRef.current?.contains(target);
+      const isNotificationContent =
+        notificationContentRef.current?.contains(target);
+
+      if (!isNotificationButton && !isNotificationContent) {
+        setActiveState(null);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,7 +81,7 @@ export default function AppTaskbar(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex h-fit py-1 px-1 w-full bg-[#c0c0c0] items-center justify-between gap-2 border-b dark:bg-silver">
+    <div className="z-0 flex h-fit py-1 px-1 w-full bg-[#c0c0c0] items-center justify-between gap-2 border-b dark:bg-silver">
       {/* Left Section */}
       <div className={`w-full flex items-center gap-2`}>
         {/* <div
@@ -76,7 +98,7 @@ export default function AppTaskbar(): JSX.Element {
             // <span className="fill-black text-2xl dark:fill-white">⛓️</span>
           )} */}
           {/* <ShadowForgeIcon /> */}
-          <div className="w-[100px] flex">
+          <div className="w-[100px] flex" onClick={() => navigate("/")}>
             <Button fullWidth className="flex gap-x-1">
               <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" />
               <span className="text-base font-bold">Start</span>
@@ -113,9 +135,9 @@ export default function AppTaskbar(): JSX.Element {
       </div>
 
       {/* Middle Section */}
-      {/* <div className="w-full flex-1 truncate md:max-w-[57%] lg:absolute lg:left-1/2 lg:max-w-[43%] lg:-translate-x-1/2 xl:max-w-[31%]">
+      <div className="w-full flex-1 truncate md:max-w-[57%] lg:absolute lg:left-1/2 lg:max-w-[43%] lg:-translate-x-1/2 xl:max-w-[31%]">
         <FlowMenu />
-      </div> */}
+      </div>
 
       {/* Right Section */}
       {/* <div className={`flex items-center gap-2`}> */}

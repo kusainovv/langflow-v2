@@ -73,7 +73,10 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
 
   return (
     <>
-      <>
+      <div
+      onDragStart={onDragStart}
+      onClick={handleClick}
+      >
         {/* key={flowData.id}
         draggable
         onDragStart={onDragStart}
@@ -154,7 +157,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
             </DropdownMenuContent>
           </DropdownMenu>
         </div> */}
-      </>
+      </div>
 
       {/* {openDelete && (
         <DeleteConfirmationModal

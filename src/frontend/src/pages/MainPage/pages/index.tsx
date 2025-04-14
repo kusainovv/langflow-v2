@@ -59,7 +59,7 @@ export default function CollectionPage(): JSX.Element {
   return (
     <SidebarProvider>
       <div className="py-2 px-1 w-full h-full bg-[#008080]">
-        <div className="w-fit grid grid-cols-4">
+        <div className="w-fit grid grid-cols-4 gap-y-4">
           
         <Outlet />
 

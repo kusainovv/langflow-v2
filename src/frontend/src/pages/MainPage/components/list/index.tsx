@@ -22,6 +22,7 @@ import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
 import { DesktopIcon } from "@/components/ui/desktop-icon";
+import { MenuList, MenuListItem, Separator } from "react95";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -71,6 +72,18 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
       : getNumberFromString(flowData.gradient ?? flowData.id)) %
     swatchColors.length;
 
+    const ContextMenu = ({ x, y }) => {
+      return (
+        <MenuList className="xp-menu bg-red-500" style={{ top: y, left: x, position: 'absolute' }}>
+          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Open</MenuListItem>
+          <Separator />
+          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Properties</MenuListItem>
+          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Rename</MenuListItem>
+          <MenuListItem style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
+        </MenuList>
+      );
+    }
+
   return (
     <>
       <div
@@ -85,7 +98,9 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           isComponent ? "cursor-default" : "cursor-pointer"
         } group justify-between border border-border p-4`}
         data-testid="list-card" */}
-        <DesktopIcon label={flowData.name} iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
+        <DesktopIcon label={flowData.name} onContextMenu={() => {
+          // handleContextMenu
+        }} onContextMenuNode={<ContextMenu />} iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
         {/* left side */}
         {/* <div
           className={`flex min-w-0 ${

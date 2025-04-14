@@ -218,9 +218,9 @@ export function WindowsModal({
         }}
         className={cn("flex flex-col bg-light-gray border shadow-lg", className)}
         // minWidth={500}
-        minHeight={600}
-        minWidth={800}
-        maxWidth={800}
+        minHeight={defaultSize.height}
+        minWidth={defaultSize.width}
+        maxWidth={defaultSize.width}
         // maxWidth={maxWidth}
         maxHeight={effectiveMaxHeight}
         handleStyles={{

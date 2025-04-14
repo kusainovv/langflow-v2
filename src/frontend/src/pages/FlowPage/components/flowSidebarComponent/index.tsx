@@ -35,6 +35,7 @@ import { combinedResultsFn } from "./helpers/combined-results";
 import { filteredDataFn } from "./helpers/filtered-data";
 import { normalizeString } from "./helpers/normalize-string";
 import { traditionalSearchMetadata } from "./helpers/traditional-search-metadata";
+import { WindowsModal } from "@/modals/IOModal/window-modal"
 
 const CATEGORIES = SIDEBAR_CATEGORIES;
 const BUNDLES = SIDEBAR_BUNDLES;
@@ -315,8 +316,13 @@ export function FlowSidebarComponent() {
     [dataFilter],
   );
 
-  return (
-    <Sidebar
+  return <WindowsModal isOpen={true} onClose={() => {
+    setOpen(false)
+  }} title="Tools" defaultSize={{
+    width: 280,
+    height: 600
+  }} maxHeight={600} maxWidth={200} maxContentHeight={600} defaultPosition={{ x: 50, y: 50 }}>
+ <Sidebar
       collapsible="offcanvas"
       data-testid="shad-sidebar"
       className="noflow"
@@ -384,7 +390,8 @@ export function FlowSidebarComponent() {
         />
       </SidebarFooter> */}
     </Sidebar>
-  );
+  </WindowsModal>
+
 }
 
 FlowSidebarComponent.displayName = "FlowSidebarComponent";

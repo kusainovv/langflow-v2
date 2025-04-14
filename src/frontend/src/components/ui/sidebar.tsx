@@ -218,7 +218,7 @@ const Sidebar = React.forwardRef<
         data-side={side}
       >
         {/* This is what handles the sidebar gap on desktop */}
-        <div
+        {/* <div
           className={cn(
             "relative h-full w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear",
             "group-data-[collapsible=offcanvas]:w-0",
@@ -231,24 +231,24 @@ const Sidebar = React.forwardRef<
               ? "max-sm:w-[--sidebar-width-icon]"
               : "max-sm:w-0",
           )}
-        />
+        /> */}
         <div
-          className={cn(
-            "absolute inset-y-0 z-50 flex h-full transition-[left,right,width] duration-200 ease-linear",
-            // Adjust width based on state and device
-            "w-[--sidebar-width]",
-            "max-sm:group-data-[state=collapsed]:w-[--sidebar-width-icon]",
-            side === "left"
-              ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-              : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-            // Adjust the padding for floating and inset variants.
-            variant === "floating" || variant === "inset"
-              ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
-            // Position absolute relative to parent container on mobile
-            "max-sm:absolute max-sm:h-[100%] max-sm:group-data-[state=expanded]:bg-silver/80",
-            className,
-          )}
+          // className={cn(
+          //   "absolute inset-y-0 z-50 flex h-full transition-[left,right,width] duration-200 ease-linear",
+          //   // Adjust width based on state and device
+          //   "w-[--sidebar-width]",
+          //   "max-sm:group-data-[state=collapsed]:w-[--sidebar-width-icon]",
+          //   side === "left"
+          //     ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
+          //     : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+          //   // Adjust the padding for floating and inset variants.
+          //   variant === "floating" || variant === "inset"
+          //     ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
+          //     : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          //   // Position absolute relative to parent container on mobile
+          //   "max-sm:absolute max-sm:h-[100%] max-sm:group-data-[state=expanded]:bg-silver/80",
+          //   className,
+          // )}
           {...props}
         >
           <div

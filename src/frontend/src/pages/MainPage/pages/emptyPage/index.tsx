@@ -12,7 +12,9 @@ type EmptyPageProps = {
 export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
   const folders = useFolderStore((state) => state.folders);
 
-  return <DesktopIcon iconSrc="https://win98icons.alexmeub.com/icons/png/notepad-4.png" label="New Workflow"  />
+  return <div onClick={() => setOpenModal(true)}>
+     <DesktopIcon iconSrc="https://win98icons.alexmeub.com/icons/png/notepad-4.png" label="New Workflow"  />
+  </div>
   return (
     <div className="m-0 bg-secondary p-0">
       <div className="text-container">

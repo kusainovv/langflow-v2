@@ -260,12 +260,15 @@ export default function IOModal({
       {/* TODO ADAPT TO ALL TYPES OF INPUTS AND OUTPUTS */}
       <WindowsModal isOpen={open} onClose={() => {
         setOpen(false)
-      }} title="Playground" maxHeight={600} maxWidth={800} maxContentHeight={600} defaultPosition={{ x: 50, y: 50 }}>
+      }} title="Playground" maxHeight={600} maxWidth={800} maxContentHeight={600} defaultSize={{
+        width: 800,
+        height: 600
+      }} defaultPosition={{ x: 50, y: 50 }}>
         {open && (
           <div className="flex h-full"> {/**flex-max-width h-full bg-red-500 */}
             <div
               className={cn(
-                "flex flex-shrink-0 p-2 content-box sticky top-0 h-fit flex-col justify-start transition-all duration-300",
+                "min-w-[140px] flex flex-shrink-0 p-2 content-box sticky top-0 h-fit flex-col justify-start transition-all duration-300",
                 // sidebarOpen
                   // ? "absolute z-50 lg:relative lg:w-1/5 lg:max-w-[280px]"
                   // : "",

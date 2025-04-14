@@ -124,7 +124,7 @@ const router = createBrowserRouter(
                       }
                     />
                   </Route>
-                  <Route
+                  {/* <Route
                     path="all/"
                     element={
                       ENABLE_HOMEPAGE ? (
@@ -144,7 +144,7 @@ const router = createBrowserRouter(
                         )
                       }
                     />
-                  </Route>
+                  </Route> */}
                 </Route>
                 <Route path="settings" element={<SettingsPage />}>
                   {/* <Route

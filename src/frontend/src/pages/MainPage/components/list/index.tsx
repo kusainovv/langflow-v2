@@ -121,7 +121,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     <>
       <div
       onDragStart={onDragStart}
-      onClick={handleClick}
+      onDoubleClick={handleClick}
       >
 
         {/* key={flowData.id}

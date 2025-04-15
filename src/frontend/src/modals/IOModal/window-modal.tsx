@@ -40,6 +40,7 @@ export function WindowsModal({
   const [isDragging, setIsDragging] = React.useState(false)
   const [dragOffset, setDragOffset] = React.useState({ x: 0, y: 0 })
 
+  const titleBarRef = React.useRef();
   const windowRef = React.useRef<HTMLDivElement>(null)
   const contentRef = React.useRef<HTMLDivElement>(null)
 
@@ -190,6 +191,7 @@ export function WindowsModal({
     console.log("Minimize clicked")
   }
 
+  console.info(titleBarRef)
   return (
     <Frame
         variant="window"
@@ -206,16 +208,17 @@ export function WindowsModal({
       <Resizable
         size={size}
         onResize={handleResize}
-        enable={{
-          top: !isMaximized,
-          right: !isMaximized,
-          bottom: !isMaximized,
-          left: !isMaximized,
-          topRight: !isMaximized,
-          bottomRight: !isMaximized,
-          bottomLeft: !isMaximized,
-          topLeft: !isMaximized,
-        }}
+        // enable={{
+        //   top: !isMaximized,
+        //   right: !isMaximized,
+        //   bottom: !isMaximized,
+        //   left: !isMaximized,
+        //   topRight: !isMaximized,
+        //   bottomRight: !isMaximized,
+        //   bottomLeft: !isMaximized,
+        //   topLeft: !isMaximized,
+        // }}
+        enable={false}
         className={cn("flex flex-col bg-light-gray border shadow-lg", className)}
         // minWidth={500}
         minHeight={defaultSize.height}
@@ -236,8 +239,9 @@ export function WindowsModal({
       >
         {/* Window Title Bar */}
         <div
+          ref={titleBarRef}
           className={cn(
-            "select-none flex items-center justify-between border-b bg-gradient-to-b from-muted/50 to-muted py-1 px-4",
+            "select-none flex items-center justify-between border-b bg-gradient-to-b from-muted/50 to-muted py-1 px-1",
             isDragging && "cursor-move",
             !isDragging && "cursor-default hover:bg-muted/80",
             "bg-gradient-to-r from-navy-gradient-start to-navy-gradient-end text-white"
@@ -264,8 +268,9 @@ export function WindowsModal({
         {/* Window Content */}
         <div
           ref={contentRef}
-          className="flex-1 overflow-auto"
+          className="flex-1 overflow-y-auto"
           style={{
+            height: `calc(100% - ${titleBarRef.current?.scrollHeight}px)`,
             maxHeight: effectiveMaxContentHeight ? `${effectiveMaxContentHeight}px` : undefined,
           }}
         >

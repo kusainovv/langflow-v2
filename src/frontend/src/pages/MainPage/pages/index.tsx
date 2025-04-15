@@ -59,7 +59,7 @@ export default function CollectionPage(): JSX.Element {
   };
 
 const ITEM_HEIGHT = 78; // px
-const GAP = 12; // px
+const GAP = 8; // px
 const totalItemHeight = ITEM_HEIGHT + GAP;
 
 const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);

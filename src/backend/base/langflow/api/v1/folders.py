@@ -31,6 +31,7 @@ from langflow.services.database.models.folder.model import (
     FolderUpdate,
 )
 from langflow.services.database.models.folder.pagination_model import FolderWithPaginatedFlows
+from fastapi_pagination import create_page, Params
 
 router = APIRouter(prefix="/folders", tags=["Folders"])
 
@@ -111,13 +112,12 @@ async def read_folders(
         raise HTTPException(status_code=500, detail=str(e)) from e
 
 
-@router.get("/{folder_id}", response_model=FolderWithPaginatedFlows | FolderReadWithFlows, status_code=200)
+@router.get("/{folder_id}", response_model=FolderWithPaginatedFlows, status_code=200)
 async def read_folder(
     *,
     session: DbSession,
     folder_id: UUID,
     current_user: CurrentActiveUser,
-    params: Annotated[Params | None, Depends(custom_params)],
     is_component: bool = False,
     is_flow: bool = False,
     search: str = "",
@@ -139,28 +139,20 @@ async def read_folder(
         raise HTTPException(status_code=404, detail="Folder not found")
 
     try:
-        if params and params.page and params.size:
-            stmt = select(Flow).where(Flow.folder_id == folder_id)
+        filtered_flows = [
+            flow for flow in folder.flows
+            if flow.user_id == current_user.id
+            and (not is_component or flow.is_component)
+            and (not is_flow or not flow.is_component)
+            and (search.lower() in flow.name.lower() if search else True)
+        ]
 
-            if Flow.updated_at is not None:
-                stmt = stmt.order_by(Flow.updated_at.desc())  # type: ignore[attr-defined]
-            if is_component:
-                stmt = stmt.where(Flow.is_component == True)  # noqa: E712
-            if is_flow:
-                stmt = stmt.where(Flow.is_component == False)  # noqa: E712
-            if search:
-                stmt = stmt.where(Flow.name.like(f"%{search}%"))  # type: ignore[attr-defined]
-            paginated_flows = await paginate(session, stmt, params=params)
+        fake_page = create_page(filtered_flows, total=len(filtered_flows), params=Params())
 
-            return FolderWithPaginatedFlows(folder=FolderRead.model_validate(folder), flows=paginated_flows)
+        return FolderWithPaginatedFlows(folder=FolderRead.model_validate(folder), flows=fake_page)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
-
-    flows_from_current_user_in_folder = [flow for flow in folder.flows if flow.user_id == current_user.id]
-    folder.flows = flows_from_current_user_in_folder
-    return folder
-
 
 @router.patch("/{folder_id}", response_model=FolderRead, status_code=200)
 async def update_folder(

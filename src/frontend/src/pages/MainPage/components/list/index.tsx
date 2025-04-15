@@ -21,11 +21,12 @@ import useDescriptionModal from "../../hooks/use-description-modal";
 import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
-import { DesktopIcon } from "@/components/ui/desktop-icon";
 import { MenuList, MenuListItem, Separator } from "react95";
 import useSelectOptionsChange from "../../hooks/use-select-options-change";
 import useDuplicateFlows from "../../hooks/use-handle-duplicate";
 import { downloadFlow } from "@/utils/reactflowUtils";
+import { DesktopIcon } from "@/features/desktop/components/DesktopIcon/ui";
+import { DesktopFlowIcon } from "@/features/desktop/components/entities/Flow/ui";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -117,10 +118,22 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
       );
     }
 
+    // display: grid
+    // ;
+    //     grid-template-columns: min-content min-content min-content min-content min-content min-content;
+    //     grid-auto-rows: min-content;
+
+  const columns = Number(flowData.data?.nodes?.length) / 6;
+
   return (
     <>
       <div
       onDragStart={onDragStart}
+      style={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${columns}, min-content)`,
+        gridAutoRows: "min-content"
+      }}
       onDoubleClick={handleClick}
       >
 
@@ -132,9 +145,10 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           isComponent ? "cursor-default" : "cursor-pointer"
         } group justify-between border border-border p-4`}
         data-testid="list-card" */}
-        <DesktopIcon label={flowData.name} onContextMenu={() => {
+        <DesktopFlowIcon flowData={flowData} />
+        {/* <DesktopIcon label={flowData.name} onContextMenu={() => {
           // handleContextMenu
-        }} onContextMenuNode={<ContextMenu />} iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
+        }} onContextMenuNode={<ContextMenu />} iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" /> */}
         {/* left side */}
         {/* <div
           className={`flex min-w-0 ${

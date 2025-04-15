@@ -3,8 +3,9 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 interface DesktopIconProps {
   label: string;
   iconSrc: string;
-  onContextMenu: any;
-  onContextMenuNode: ReactNode;
+  onContextMenu?: any;
+  onContextMenuNode?: ReactNode;
+  onDoubleClick?: React.MouseEventHandler<HTMLDivElement> | undefined
 }
 
 export const DesktopIcon = (props: DesktopIconProps) => {
@@ -36,10 +37,11 @@ export const DesktopIcon = (props: DesktopIconProps) => {
   return (
     <>
       <div
+        onDoubleClick={props?.onDoubleClick}
         onContextMenu={handleContextMenu}
-        className="w-[78px] flex flex-col justify-center items-center text-center"
+        className="w-[78px] h-fit flex flex-col justify-center items-center text-center"
       >
-        <img className="m-auto" src={props.iconSrc} />
+        <img className="mx-auto my-0" src={props.iconSrc} />
         <span className="pt-2 text-center text-[8px] text-white">{props.label}</span>
       </div>
 

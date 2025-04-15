@@ -23,8 +23,8 @@ const HomePage = ({ type }) => {
   });
   const [newProjectModal, setNewProjectModal] = useState(false);
   const { folderId } = useParams();
-  const [pageIndex, setPageIndex] = useState(1);
-  const [pageSize, setPageSize] = useState(12);
+  // const [pageIndex, setPageIndex] = useState(1);
+  // const [pageSize, setPageSize] = useState(12);
   const [search, setSearch] = useState("");
   const handleFileDrop = useFileDrop("flows");
   const [flowType, setFlowType] = useState<"flows" | "components">(type);
@@ -38,8 +38,8 @@ const HomePage = ({ type }) => {
 
   const { data: folderData, isLoading } = useGetFolderQuery({
     id: folderId ?? myCollectionId!,
-    page: pageIndex,
-    size: pageSize,
+    // page: pageIndex,
+    // size: pageSize,
     is_component: flowType === "components",
     is_flow: flowType === "flows",
     search,
@@ -51,12 +51,12 @@ const HomePage = ({ type }) => {
     description: folderData?.folder?.description ?? "",
     parent_id: folderData?.folder?.parent_id ?? "",
     components: folderData?.folder?.components ?? [],
-    pagination: {
-      page: folderData?.flows?.page ?? 1,
-      size: folderData?.flows?.size ?? 12,
-      total: folderData?.flows?.total ?? 0,
-      pages: folderData?.flows?.pages ?? 0,
-    },
+    // pagination: {
+    //   page: folderData?.flows?.page ?? 1,
+    //   size: folderData?.flows?.size ?? 12,
+    //   total: folderData?.flows?.total ?? 0,
+    //   pages: folderData?.flows?.pages ?? 0,
+    // },
   };
 
   useEffect(() => {
@@ -64,13 +64,13 @@ const HomePage = ({ type }) => {
   }, [view]);
 
   const handlePageChange = useCallback((newPageIndex, newPageSize) => {
-    setPageIndex(newPageIndex);
-    setPageSize(newPageSize);
+    // setPageIndex(newPageIndex);
+    // setPageSize(newPageSize);
   }, []);
 
   const onSearch = useCallback((newSearch) => {
     setSearch(newSearch);
-    setPageIndex(1);
+    // setPageIndex(1);
   }, []);
 
   const isEmptyFolder =
@@ -78,7 +78,9 @@ const HomePage = ({ type }) => {
     undefined;
 
 
-    return data.flows.map((flow) => (
+    // console.info(data)
+
+    return data.flows?.map((flow) => (
       <ListComponent key={flow.id} flowData={flow} />
     ))
   return (
@@ -169,7 +171,7 @@ const HomePage = ({ type }) => {
             </div>
           </div>
 
-          {!isLoading && !isEmptyFolder && data.pagination.total >= 10 && (
+          {/* {!isLoading && !isEmptyFolder && data.pagination.total >= 10 && (
             <div className="flex justify-end px-3 py-4">
               <PaginatorComponent
                 pageIndex={data.pagination.page}
@@ -181,7 +183,7 @@ const HomePage = ({ type }) => {
                 isComponent={flowType === "components"}
               />
             </div>
-          )}
+          )} */}
         </div>
       </div>
 

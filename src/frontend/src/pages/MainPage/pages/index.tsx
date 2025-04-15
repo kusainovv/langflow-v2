@@ -13,6 +13,8 @@ import { Outlet } from "react-router-dom";
 import useFileDrop from "../hooks/use-on-file-drop";
 import ModalsComponent from "../oldComponents/modalsComponent";
 import EmptyPage from "./emptyPage";
+import { DesktopNewFlowIcon } from "@/features/desktop/components/entities/NewFlow/ui";
+import { DesktopAboutMeIcon } from "@/features/desktop/components/entities/AboutMe/ui";
 
 export default function CollectionPage(): JSX.Element {
   const [openModal, setOpenModal] = useState(false);
@@ -56,16 +58,50 @@ export default function CollectionPage(): JSX.Element {
     );
   };
 
+const ITEM_HEIGHT = 78; // px
+const GAP = 12; // px
+const totalItemHeight = ITEM_HEIGHT + GAP;
+
+const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
+
   return (
     <SidebarProvider>
-      <div className="py-2 px-1 w-full h-full bg-[#008080]">
-        <div className="w-fit grid grid-cols-4 gap-y-4">
+      <div className={`
+  h-full
+  w-full
+  bg-[#008080]
+        `}>
           
-        <Outlet />
+          <div style={{
+            display: "grid",
+            gridTemplateRows: `repeat(${maxVisibleRows}, min-content)`,
+            gap: `${GAP}px`,
+            gridAutoFlow: "column",                     // fill top-to-bottom, then left-to-right
+            gridAutoColumns: "min-content",             // size each column based on its content
+          }} className={`
+              
+             
+              
+  w-full
+  h-[90vh]
+  px-4
+  py-2
+  overflow-auto
+  bg-[#2f7f7f]
+            `}>
+      <Outlet />
 
-        <EmptyPage setOpenModal={setOpenModal} />
+      <DesktopNewFlowIcon />
+
+      <DesktopAboutMeIcon />
+
+
+      {/* <DesktopIcon iconSrc="https://win98icons.alexmeub.com/images/computer_explorer-2.png" label="About Me" />             */}
+
+
+          </div>
+  
           {/* <SideBarFoldersButtonsComponent /> */}
-        </div>
       {/* {flows &&
           examples &&
           folders &&

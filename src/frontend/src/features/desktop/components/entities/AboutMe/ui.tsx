@@ -8,25 +8,7 @@ interface ContextMenuProps {
 
 }
 
-const defaultValue = `💿~~ RATMIR // LEGEND OF THE 90s ~~💿
-🎧 Playlist: Tupac, Nirvana, TLC, Beastie Boys
- 🛹 Skater by day, ICQ flirt by night
-🎬 Favorite movies: The Matrix, Clueless, Fight Club
-📺 Lives on MTV, Toonami, Fresh Prince reruns
-📟 ICQ UIN: 123456789 – don’t page me unless it’s 🔥
-🖥️ Minesweeper > your GPA
-💬 Away Message: “Out. Probably renting a VHS.”
-🎮 SNES champ // PS1 royalty
-💾 Burning mix CDs with Winamp + love
-🍕 Eats Pizza Rolls like it’s a sport
-📼 Still cries when Blockbuster closes
-🕶 Looks like Keanu, vibes like Zack Morris
-📡 Internet’s slow… but this style’s lightning
-🧃 Capri Sun energy. Fruit Gushers attitude.
-🌪️ Goosebumps on the shelf. Tamagotchi on the belt.
-🔥 I don’t do drama — I do AOL chatroom warfare
-💬 “You had me at dial-up tone.”
-`;
+const defaultValue = `YOOOOO I AIN'T JACKASS BUT FOR MY COLLEGE'S GIRL I'M THE COOLEST GUY ALIVE🔥🔥🔥🔥🔥 I'm 💿~~ RATMIR // LEGEND OF THE 90s ~~💿  🎧 Playlist: Tupac, Nirvana, TLC, Beastie Boys YOOO 🛹 Skater by day, ICQ flirt by night YOOO 🎬 Favorite movies: The Matrix, Clueless, Fight Club YOOO 📺 Lives on MTV, Toonami, Fresh Prince reruns YOOO 📟 ICQ UIN: 123456789 – don’t page me unless it’s 🔥YOO 🖥️ Minesweeper > your GPA 💬 Away Message: “Out. Probably renting a VHS.” YOOOO 🎮 SNES champ // PS1 royalty 💾 Burning mix CDs with Winamp + love YOOO 🍕 Eats Pizza Rolls like it’s a sport 📼 Still cries when Blockbuster closes YOOOU 🕶 Looks like Keanu, vibes like Zack Morris 📡 Internet’s slow… but this style’s lightning SAY IT AGAIN 🧃 Capri Sun energy. Fruit Gushers attitude. 🌪️ Goosebumps on the shelf. Tamagotchi on the belt. 🔥 I don’t do drama — I do AOL chatroom warfare 💬 “You had me at dial-up tone.”`;
 
 export const DesktopAboutMeIcon = () => {
   const [isShowWindow, setShowWindow] = useState(false);

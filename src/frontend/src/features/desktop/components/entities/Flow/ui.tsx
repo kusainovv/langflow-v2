@@ -151,7 +151,7 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
         // handleContextMenu
       }}
       onContextMenuNode={({ closeContextMenu }) => (
-        <MenuList className="xp-menu bg-red-500">
+        <MenuList className="xp-menu">
           <MenuListItem onClick={() => {
             handleSelectOptionsChange("export");
             closeContextMenu();

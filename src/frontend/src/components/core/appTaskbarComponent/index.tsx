@@ -81,9 +81,13 @@ export default function AppTaskbar(): JSX.Element {
   }, []);
 
   return (
-    <div className="z-0 flex h-fit py-1 px-1 w-full bg-[#c0c0c0] items-center justify-between gap-2 border-b dark:bg-silver">
+    <div style={{
+     borderTop: "1px solid white",
+  boxShadow: "inset 0 1px 0 rgb(192, 192, 192)"
+    }}
+     className="taskbar z-0 flex h-fit py-[2px] px-[2px] w-full bg-[#c0c0c0] items-center justify-between border-b dark:bg-silver">
       {/* Left Section */}
-      <div className={`w-full flex items-center gap-2`}>
+      <div className={`w-full flex items-center`}>
         {/* <div
           onClick={() => navigate("/")}
           className="flex gap-2 text-xs items-center text-white cursor-pointer"
@@ -98,27 +102,30 @@ export default function AppTaskbar(): JSX.Element {
             // <span className="fill-black text-2xl dark:fill-white">⛓️</span>
           )} */}
           {/* <ShadowForgeIcon /> */}
-          <div className="w-[100px] flex" onClick={() => navigate("/")}>
-            <Button fullWidth className="flex gap-x-1">
+          <button className="flex items-center gap-x-1" onClick={() => navigate("/")}>
+            <img src="https://98.js.org/images/start.png" style={{ width: "16px", height: "14px" }} />
+            <b className="text-xs font-extrabold">Start</b>
+            {/* <img style={{ height: "14px", width: "45px" }} src="https://win98icons.alexmeub.com/images/start-button.png" /> */}
+            {/* <Button fullWidth className="flex gap-x-1">
               <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" />
               <span className="text-base font-bold">Start</span>
-            </Button>
-          </div>
+            </Button> */}
+          </button>
 
           <div className="flex items-center gap-x-1">
-            <Separator orientation="vertical" size={"34px"} />
-            <Handle size={30} className="" />
+            <Separator orientation="vertical" size={"23px"} />
+            {/* <Handle size={21} className="" /> */}
           </div>
 
-          <div className="w-[240px]">
+          {/* <div className="w-[240px]">
             <TextInput placeholder="Type here..." fullWidth />
-          </div>
+          </div> */}
 
           <div className="ml-auto flex items-center bg-[#c0c0c0]">
-            <Separator className="" orientation="vertical" size={"34px"} />
+            <Separator className="" orientation="vertical" size={"21px"} />
 
-            <div className="flex w-fit items-center px-4 ml-1 h-[34px] shadow-button">
-              <span className="text-sm">{currentTime}</span>
+            <div className="flex w-fit min-h-[21px] items-center py-xp px-2 ml-1 tray inset-shallow"> {/**shadow-button */}
+              <span className="taskbar-time">{currentTime}</span>
             </div>
           </div>
 

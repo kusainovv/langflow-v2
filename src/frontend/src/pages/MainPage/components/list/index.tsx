@@ -41,7 +41,6 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     (state) => state.setFlowToCanvas,
   );
   const { getIcon } = useGetTemplateStyle(flowData);
-
   const { handleDuplicate } = useDuplicateFlows({
     selectedFlowsComponentsCards: [flowData.id],
     allFlows: [flowData],
@@ -222,7 +221,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         </div> */}
       </div>
 
-      {openDelete && (
+      {/* {openDelete && (
         <DeleteConfirmationModal
           open={openDelete}
           setOpen={setOpenDelete}
@@ -231,7 +230,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         >
           <></>
         </DeleteConfirmationModal>
-      )}
+      )} */}
 
       {/* {openDelete && (
         <DeleteConfirmationModal

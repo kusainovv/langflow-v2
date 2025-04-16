@@ -70,12 +70,12 @@ const DialogContent = React.forwardRef<
         <div className="relative bg-gradient-to-r from-navy-gradient-start to-navy-gradient-end w-full min-h-[18px] h-100% flex justify-between items-center">
               <p className="m-0 text-white text-xs	pl-2">Modal_Window.exe</p>
 
-              <div className="h-full w-[30px]">
-                <Button className="w-full h-full">
+              {/* <div className="h-full w-[30px]"> */}
+                <button>
                   <Cross2Icon className="text-black" />
-                </Button>
-              <span className="sr-only">Close</span>
-            </div>
+                </button>
+              {/* <span className="sr-only">Close</span> */}
+              {/* </div> */}
           </div>
         </DialogPrimitive.Close>
         

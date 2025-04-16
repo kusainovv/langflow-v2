@@ -68,7 +68,7 @@ export default function DeleteConfirmationModal({
           <DialogClose asChild>
             <Button
               type="submit"
-              variant="destructive"
+              // variant=""
               onClick={(e) => {
                 onConfirm(e);
               }}

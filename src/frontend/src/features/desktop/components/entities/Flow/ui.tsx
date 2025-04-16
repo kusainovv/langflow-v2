@@ -23,96 +23,29 @@ interface DesktopFlowIconProps {
 }
 
 interface ContextMenuProps {
-    flowData: FlowType
-
+  onDelete: Function,
+  onDownload: Function
+  onDuplicate: Function
 }
 
-const ContextMenu = ({ flowData }: ContextMenuProps) => {
-    const setSuccessData = useAlertStore((state) => state.setSuccessData);
-    const [openDelete, setOpenDelete] = useState(false);
-    const setErrorData = useAlertStore((state) => state.setErrorData);
+const ContextMenu = (props: ContextMenuProps) => {
 
-    const { getIcon } = useGetTemplateStyle(flowData);
-
-    const { handleDuplicate } = useDuplicateFlows({
-      selectedFlowsComponentsCards: [flowData.id],
-      allFlows: [flowData],
-      setSuccessData,
-    });
-  
-    const handleExport = () => {
-      downloadFlow(flowData, flowData.name, flowData.description);
-      setSuccessData({ title: `${flowData.name} exported successfully` });
-    };
-  
-    const { handleSelectOptionsChange } = useSelectOptionsChange(
-      [flowData.id],
-      setErrorData,
-      setOpenDelete,
-      handleDuplicate,
-      handleExport,
-    );
   
 
-    const descriptionModal = useDescriptionModal([flowData?.id], "flow");
-
-    
-
-  const { deleteFlow } = useDeleteFlow();
-
-  const swatchIndex =
-  (flowData.gradient && !isNaN(parseInt(flowData.gradient))
-    ? parseInt(flowData.gradient)
-    : getNumberFromString(flowData.gradient ?? flowData.id)) %
-  swatchColors.length;
-
-  const handleDelete = () => {
-    deleteFlow({ id: [flowData.id] })
-      .then(() => {
-        setSuccessData({
-          title: "Selected items deleted successfully",
-        });
-      })
-      .catch(() => {
-        setErrorData({
-          title: "Error deleting items",
-          list: ["Please try again"],
-        });
-      });
-  };
-
-
-    return (
-      <MenuList className="xp-menu bg-red-500" style={{ position: 'absolute' }}>
-        <MenuListItem   onClick={(e) => {
-        e.stopPropagation();
-        handleSelectOptionsChange("export");
-      }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Download</MenuListItem>
+    return <>
+      <MenuList className="xp-menu" style={{ position: 'absolute' }}>
+        <MenuListItem   onClick={props.onDownload} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Download</MenuListItem>
         <Separator />
-        <MenuListItem onClick={(e) => {
-        e.stopPropagation();
-        handleSelectOptionsChange("duplicate");
-      }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Duplicate</MenuListItem>
-        <MenuListItem  onClick={(e) => {
-        e.stopPropagation();
-        setOpenDelete(true);
-      }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
-      
-
-      {openDelete && (
-        <DeleteConfirmationModal
-          open={openDelete}
-          setOpen={setOpenDelete}
-          onConfirm={handleDelete}
-          description={descriptionModal}
-        >
-          <></>
-        </DeleteConfirmationModal>
-      )}
+        <MenuListItem onClick={props.onDuplicate} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Duplicate</MenuListItem>
+        <MenuListItem  onClick={props.onDelete} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
+    
 
 
       </MenuList>
-    );
+
+
+
+    </>
   }
 
 interface DesktopFlowIconProps {
@@ -137,9 +70,120 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
     }
   };
 
+
+
+  const descriptionModal = useDescriptionModal([props.flowData?.id], "flow");
+
+    
+
+  const { deleteFlow } = useDeleteFlow();
+
+
+
+
+  const swatchIndex =
+  (props.flowData.gradient && !isNaN(parseInt(props.flowData.gradient))
+    ? parseInt(props.flowData.gradient)
+    : getNumberFromString(props.flowData.gradient ?? props.flowData.id)) %
+  swatchColors.length;
+
+  const setSuccessData = useAlertStore((state) => state.setSuccessData);
+    const [openDelete, setOpenDelete] = useState(false);
+    
+  const handleDelete = () => {
+    deleteFlow({ id: [props.flowData.id] })
+      .then(() => {
+        setSuccessData({
+          title: "Selected items deleted successfully",
+        });
+      })
+      .catch(() => {
+        setErrorData({
+          title: "Error deleting items",
+          list: ["Please try again"],
+        });
+      });
+  };
+
+
+  const setErrorData = useAlertStore((state) => state.setErrorData);
+
+  const { getIcon } = useGetTemplateStyle(props.flowData);
+
+  const { handleDuplicate } = useDuplicateFlows({
+    selectedFlowsComponentsCards: [props.flowData.id],
+    allFlows: [props.flowData],
+    setSuccessData,
+  });
+
+  const handleExport = () => {
+    downloadFlow(props.flowData, props.flowData.name, props.flowData.description);
+    setSuccessData({ title: `${props.flowData.name} exported successfully` });
+  };
+
+  const { handleSelectOptionsChange } = useSelectOptionsChange(
+    [props.flowData.id],
+    setErrorData,
+    setOpenDelete,
+    handleDuplicate,
+    handleExport,
+  );
+
   
-    return         <DesktopIcon label={props.flowData.name} onContextMenu={() => {
+  const onDownload = (e) => {
+    e.stopPropagation();
+    handleSelectOptionsChange("export");
+  }
+
+  const onDuplicate = (e) => {
+    e.stopPropagation();
+    handleSelectOptionsChange("duplicate");
+  }
+
+  const onDelete = (e) => {
+    e.stopPropagation();
+    setOpenDelete(true);
+  }
+
+    return <>
+    
+    <DesktopIcon label={props.flowData.name} onContextMenu={() => {
         // handleContextMenu
-      }} onContextMenuNode={<ContextMenu flowData={props.flowData} />}       onDoubleClick={handleClick}
+      }}
+      onContextMenuNode={({ closeContextMenu }) => (
+        <MenuList className="xp-menu bg-red-500">
+          <MenuListItem onClick={() => {
+            handleSelectOptionsChange("export");
+            closeContextMenu();
+          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
+            Download
+          </MenuListItem>
+          <Separator />
+          <MenuListItem onClick={() => {
+            handleSelectOptionsChange("duplicate");
+            closeContextMenu();
+          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
+            Duplicate
+          </MenuListItem>
+          <MenuListItem onClick={() => {
+            setOpenDelete(true);
+            closeContextMenu();
+          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
+            Delete
+          </MenuListItem>
+        </MenuList>
+      )}  
+      onDoubleClick={handleClick}
       iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
+
+
+{openDelete &&  <DeleteConfirmationModal
+          open={openDelete}
+          setOpen={setOpenDelete}
+          onConfirm={handleDelete}
+          description={descriptionModal}
+        >
+          <></>
+        </DeleteConfirmationModal>}
+    </>
 }

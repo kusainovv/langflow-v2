@@ -4,7 +4,7 @@ interface DesktopIconProps {
   label: string;
   iconSrc: string;
   onContextMenu?: any;
-  onContextMenuNode?: ReactNode;
+  onContextMenuNode?: (opts: { closeContextMenu: () => void }) => ReactNode;
   onDoubleClick?: React.MouseEventHandler<HTMLDivElement> | undefined
 }
 
@@ -45,19 +45,22 @@ export const DesktopIcon = (props: DesktopIconProps) => {
         <span className="pt-2 text-center text-[8px] text-white">{props.label}</span>
       </div>
 
-      {menuPosition && (
-        <div
+      {menuPosition && <div
           ref={menuRef}
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
           style={{
             top: menuPosition.y,
             left: menuPosition.x,
             position: "absolute",
-            zIndex: 1000,
+            // zIndex: 1000,
           }}
         >
-          {props.onContextMenuNode}
-        </div>
-      )}
+          {props.onContextMenuNode?.({
+      closeContextMenu: () => setMenuPosition(null)
+    })}
+        </div>}
     </>
   );
 };

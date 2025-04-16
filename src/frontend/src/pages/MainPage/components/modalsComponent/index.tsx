@@ -19,7 +19,7 @@ const ModalsComponent = ({
 }: ModalsProps) => (
   <>
     {openModal && <TemplatesModal open={openModal} setOpen={setOpenModal} />}
-    {openDeleteFolderModal && (
+    {/* {openDeleteFolderModal && (
       <DeleteConfirmationModal
         open={openDeleteFolderModal}
         setOpen={setOpenDeleteFolderModal}
@@ -34,7 +34,7 @@ const ModalsComponent = ({
       >
         <></>
       </DeleteConfirmationModal>
-    )}
+    )} */}
   </>
 );
 

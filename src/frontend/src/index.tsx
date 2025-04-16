@@ -7,6 +7,8 @@ import "./style/index.css";
 // @ts-ignore
 import "./App.css";
 import "./style/applies.css";
+import "./style/reset.css";
+
 
 // @ts-ignore
 import App from "./App";

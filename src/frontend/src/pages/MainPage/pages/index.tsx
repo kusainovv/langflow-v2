@@ -83,7 +83,7 @@ const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
              
               
   w-full
-  h-[90vh]
+  h-full
   px-4
   py-2
   overflow-auto

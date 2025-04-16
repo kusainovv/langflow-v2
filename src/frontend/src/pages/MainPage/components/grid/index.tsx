@@ -134,17 +134,6 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
           {flowData.description}
         </div>
       </Card>
-
-      {openDelete && (
-        <DeleteConfirmationModal
-          open={openDelete}
-          setOpen={setOpenDelete}
-          onConfirm={handleDelete}
-          description={descriptionModal}
-        >
-          <></>
-        </DeleteConfirmationModal>
-      )}
     </>
   );
 };

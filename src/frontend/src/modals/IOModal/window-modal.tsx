@@ -191,7 +191,6 @@ export function WindowsModal({
     console.log("Minimize clicked")
   }
 
-  console.info(titleBarRef)
   return (
     <Frame
         variant="window"
@@ -241,14 +240,14 @@ export function WindowsModal({
         <div
           ref={titleBarRef}
           className={cn(
-            "select-none flex items-center justify-between border-b bg-gradient-to-b from-muted/50 to-muted py-1 px-1",
+            "select-none flex items-center justify-between border-b bg-gradient-to-b from-muted/50 to-muted pl-1",
             isDragging && "cursor-move",
             !isDragging && "cursor-default hover:bg-muted/80",
             "bg-gradient-to-r from-navy-gradient-start to-navy-gradient-end text-white"
           )}
           onMouseDown={handleMouseDown}
         >
-          <div className="text-sm font-medium">{title}</div>
+          <div className="text-xs font-medium">{title}</div>
           <div className="flex items-center gap-2">
             {/* <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-background/80" onClick={handleMinimize}>
               <Minus className="h-3 w-3" />
@@ -258,10 +257,9 @@ export function WindowsModal({
               <Square className="h-3 w-3" />
               <span className="sr-only">Maximize</span>
             </Button> */}
-            <Button variant="ghost" size="icon" className="h-6 w-6 hover:bg-destructive" onClick={onClose}>
+            <button onClick={onClose}>
               <X className="h-3 w-3" />
-              <span className="sr-only">Close</span>
-            </Button>
+            </button>
           </div>
         </div>
 

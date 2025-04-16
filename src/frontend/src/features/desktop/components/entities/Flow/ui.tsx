@@ -182,8 +182,6 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
           setOpen={setOpenDelete}
           onConfirm={handleDelete}
           description={descriptionModal}
-        >
-          <></>
-        </DeleteConfirmationModal>}
+        />}
     </>
 }

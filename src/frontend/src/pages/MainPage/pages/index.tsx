@@ -69,7 +69,7 @@ const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
       <div className={`
   h-full
   w-full
-
+  bg-[#008080]
 `} style={{
   // backgroundImage: "url(https://i.pinimg.com/736x/f2/4f/64/f24f6477aae49fb93b2042d18cd133f3.jpg)",
   // backgroundSize: "cover",
@@ -82,6 +82,7 @@ const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
   imageRendering: "pixelated",
   objectFit: "contain",
   width: "100%",
+  height: "100%",
   position: "absolute",
   zIndex: -1,
   filter: "sepia(0.2) hue-rotate(2deg) brightness(0.9) contrast(1.2) saturate(1.3)"

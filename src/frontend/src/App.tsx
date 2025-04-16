@@ -36,10 +36,12 @@ const GlobalStyles = createGlobalStyle`
 export default function App() {
   return <>
     <GlobalStyles />
-    <ThemeProvider theme={original}>
-      <Suspense fallback={<LoadingPage />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </ThemeProvider>
+    <div className="crt-filter">
+      <ThemeProvider theme={original}>
+        <Suspense fallback={<LoadingPage />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </ThemeProvider>
+    </div>
   </>
 }

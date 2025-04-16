@@ -11,7 +11,6 @@ import {
 } from "../../components/ui/dialog";
 
 export default function DeleteConfirmationModal({
-  children,
   onConfirm,
   description,
   asChild,
@@ -19,7 +18,6 @@ export default function DeleteConfirmationModal({
   setOpen,
   note = "",
 }: {
-  children: JSX.Element;
   onConfirm: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   description?: string;
   asChild?: boolean;
@@ -29,37 +27,45 @@ export default function DeleteConfirmationModal({
 }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild={asChild} tabIndex={-1}>
+      {/* <DialogTrigger asChild={asChild} tabIndex={-1}>
         {children}
-      </DialogTrigger>
-      <DialogContent>
+      </DialogTrigger> */}
+      <DialogContent asChild onInteractOutside={(e) => {
+        e.preventDefault()
+      }}>
+        <div className="p-4">
         <DialogHeader>
-          <DialogTitle>
-            <div className="flex items-center">
+          {/* <DialogTitle> */}
+            {/* <div className="flex items-center">
               <span className="pr-2">Delete</span>
               <Trash2
                 className="h-6 w-6 pl-1 text-foreground"
                 strokeWidth={1.5}
               />
-            </div>
-          </DialogTitle>
+            </div> */}
+          {/* </DialogTitle> */}
         </DialogHeader>
-        <span className="px-4">
-          Are you sure you want to delete the selected{" "}
-          {description ?? "component"}?<br></br>
-          {note && (
-            <>
-              {note}
-              <br></br>
-            </>
-          )}
-          Note: This action is irreversible.
-        </span>
+        <div className="flex mb-4">
+          <img className="mr-4" src="https://98.js.org/images/icons/error-32x32-8bpp.png" />
+          <span className="text-sm">
+            Are you sure you want to delete the selected{" "}
+            {description ?? "component"}?<br></br>
+            {note && (
+              <>
+                {note}
+                <br></br>
+              </>
+            )}
+          </span>
+          
+        </div>
         <DialogFooter>
+          <div className="flex justify-end gap-x-1">
           <DialogClose asChild>
             <Button
+              className="w-[75px]"
               onClick={(e) => e.stopPropagation()}
-              className="mr-1"
+              // className="mr-1"
               variant="outline"
             >
               Cancel
@@ -67,6 +73,7 @@ export default function DeleteConfirmationModal({
           </DialogClose>
           <DialogClose asChild>
             <Button
+              className="w-[75px]"
               type="submit"
               // variant=""
               onClick={(e) => {
@@ -76,7 +83,10 @@ export default function DeleteConfirmationModal({
               Delete
             </Button>
           </DialogClose>
+          </div>
+        
         </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -10,35 +10,34 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-silver text-black-foreground  hover: ",
+        default: "", // bg-silver text-black-foreground  hover: 
         // destructive:
         //   "bg-destructive  -foreground hover: ",
         outline:
-          "border border-input hover:  ",
+          "", // border border-input hover: 
         primary:
-          "border bg-silver text-black hover: ",
+          " ", // border bg-silver text-black hover:
         warning:
-          "bg-warning-foreground text-warning-text hover: ",
+          "", // bg-warning-foreground text-warning-text hover: 
         secondary:
-          "border      text-black hover: ",
+          "", // border      text-black hover: 
         ghost:
-          "text-foreground hover:  disabled:!bg-transparent",
+          "", // text-foreground hover:  disabled:!bg-transparent
         ghostActive:
-          "  text-foreground hover: ",
-        menu: "hover:  focus:!ring-0 focus-visible:!ring-0",
-        "menu-active":
-          " focus-visible:!ring-offset-0",
-        link: "underline-offset-4text-primary",
+          "  ", // text-foreground hover: 
+        menu: "", // hover:  focus:!ring-0 focus-visible:!ring-0
+        "menu-active": "", // focus-visible:!ring-offset-0
+        link: "", // underline-offset-4text-primary
       },
       size: {
-        default: "h-10 py-2 px-4",
-        sm: "h-9 px-3",
-        xs: "py-0.5 px-3",
-        lg: "h-11 px-8",
-        iconMd: "p-1.5",
-        icon: "p-1",
-        iconSm: "p-0.5",
-        "node-toolbar": "py-[6px] px-[6px]",
+        default: "", // h-10 py-2 px-4
+        sm: "", // h-9 px-3
+        xs: "", // py-0.5 px-3
+        lg: "", // h-11 px-8
+        iconMd: "", // p-1.5
+        icon: "", // p-1
+        iconSm: "", // p-0.5
+        "node-toolbar": "", // py-[6px] px-[6px]
       },
     },
     defaultVariants: {

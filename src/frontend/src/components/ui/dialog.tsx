@@ -42,9 +42,11 @@ const DialogContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => {
   // console.info(props)
   return <DialogPortal>
-    <DialogOverlay />
+   
 
-    <div 
+    {/* <DialogOverlay /> */}
+
+    {/* <div 
     className={cn(
       "fixed z-50 flex w-full max-w-lg data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95  data-[state=open]:zoom-in-95",
       className
@@ -53,46 +55,52 @@ const DialogContent = React.forwardRef<
        style={{ 
         // width: 150, height: 100, 
         background: '#BFBFBF', 
-        boxShadow: '2px 2px 0px white inset' }}>
+        boxShadow: '2px 2px 0px white inset' }}
+        > */}
 
-  <div className="w-full h-full" style={{ boxShadow: '-2px -2px 0px #808080 inset', backgroundColor: "#BFBFBF" }} >
+  {/* <div className="w-full h-full" style={{ boxShadow: '-2px -2px 0px #808080 inset', backgroundColor: "#BFBFBF" }} >
     <div className="w-full h-full" style={{ boxShadow: '1px 1px 0px #DBDBDB inset', backgroundColor: "#BFBFBF" }}>
-      <div className="w-full h-full" style={{ boxShadow: '-1px -1px 0px black inset', backgroundColor: "#BFBFBF" }}>
+      <div className="w-full h-full" style={{ boxShadow: '-1px -1px 0px black inset', backgroundColor: "#BFBFBF" }}> */}
       <DialogPrimitive.Content
-      className={cn(
-        "flex flex-col h-full bg-light-gray duration-200 ",
-      )}
+      className="bg-red-500"
+      // className={cn(
+      //   "flex flex-col h-full bg-light-gray duration-200 ",
+      // )}
       {...props}
       ref={ref}
     >
-          
-      <DialogPrimitive.Close className="w-full">
-        <div className="relative bg-gradient-to-r from-navy-gradient-start to-navy-gradient-end w-full min-h-[18px] h-100% flex justify-between items-center">
-              <p className="m-0 text-white text-xs	pl-2">Modal_Window.exe</p>
-
-              {/* <div className="h-full w-[30px]"> */}
-                <button>
-                  <Cross2Icon className="text-black" />
-                </button>
-              {/* <span className="sr-only">Close</span> */}
-              {/* </div> */}
+       <div className="window os-window focused">
+       <div className="window-titlebar">
+          <div className="window-title-area">
+            <span className="window-title">test</span>
           </div>
-        </DialogPrimitive.Close>
-        
-     {children}
 
-      <ShadTooltip
+          <DialogPrimitive.Close asChild>
+            <button>
+              <Cross2Icon />
+            </button>
+            </DialogPrimitive.Close>
+      </div>
+    
+        
+      <div className="window-content"> 
+        {children}
+      </div>
+       </div>
+        
+
+      {/* <ShadTooltip
         styleClasses="z-50"
         content="Close"
         side="bottom"
         avoidCollisions
       >
-      </ShadTooltip>
+      </ShadTooltip> */}
     </DialogPrimitive.Content>
-      </div>
-    </div>
+      {/* </div> */}
+    {/* </div>
   </div>
-</div>
+</div> */}
 
 
   </DialogPortal>
@@ -104,7 +112,7 @@ const DialogHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("flex flex-col space-y-1 p-4 text-left", className)}
+    // className={cn("flex flex-col space-y-1 p-4 text-left", className)}
     {...props}
   />
 );
@@ -115,10 +123,10 @@ const DialogFooter = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn(
-      "flex flex-col-reverse pb-2 px-2 sm:flex-row sm:justify-end sm:space-x-2",
-      className,
-    )}
+    // className={cn(
+    //   "flex flex-col-reverse pb-2 px-2 sm:flex-row sm:justify-end sm:space-x-2",
+    //   className,
+    // )}
     {...props}
   />
 );
@@ -130,10 +138,10 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn(
-      "text-lg   leading-none tracking-tight",
-      className,
-    )}
+    // className={cn(
+    //   "text-lg   leading-none tracking-tight",
+    //   className,
+    // )}
     {...props}
   />
 ));
@@ -145,7 +153,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm   ", className)}
+    // className={cn("text-sm   ", className)}
     {...props}
   />
 ));

@@ -42,7 +42,7 @@ export const DesktopIcon = (props: DesktopIconProps) => {
         className="w-[78px] h-fit flex flex-col justify-center items-center text-center"
       >
         <img className="mx-auto my-0" src={props.iconSrc} />
-        <span className="pt-2 text-center text-[8px] text-white">{props.label}</span>
+        <span className="pt-2 w-[78px] overflow-hidden text-center text-[8px] text-white truncate">{props.label}</span>
       </div>
 
       {menuPosition && <div

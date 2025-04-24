@@ -1768,3 +1768,48 @@ so I think I'll imitate that. (I might change it later) */
 	text-decoration-skip: none;
     text-decoration-skip-ink: none;
 }
+.dropdown {
+	width: auto;
+    padding: 4px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(223, 223, 223) rgb(10, 10, 10) rgb(10, 10, 10) rgb(223, 223, 223);
+    box-shadow: rgb(254, 254, 254) 1px 1px 0px 1px inset, rgb(132, 133, 132) -1px -1px 0px 1px inset;
+    box-sizing: border-box;
+    display: inline-block;
+    background: rgb(198, 198, 198);
+    color: rgb(10, 10, 10);
+    list-style: none;
+    position: relative;
+}
+.dropdown > .item {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    min-height: 22px;
+    width: auto;
+    padding: 0px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    text-align: center;
+    line-height: 12px;
+    color: rgb(10, 10, 10);
+    pointer-events: auto;
+    font-weight: normal;
+	cursor: pointer;
+}
+.dropdown > .item.bold {
+	font-weight: 900;
+}
+.dropdown > .divider {
+	width: 100%;
+    margin: 0px;
+}
+.dropdown > .divider.horizontal {
+	border-bottom: 2px solid rgb(254, 254, 254);
+    border-top: 2px solid rgb(132, 133, 132);
+}

@@ -1,9 +1,5 @@
 
-import { MenuList, MenuListItem, Separator } from "react95";
 import { downloadFlow } from "@/utils/reactflowUtils";
-import { swatchColors } from "@/utils/styleUtils";
-import { cn, getNumberFromString } from "@/utils/utils";
-import { useGetTemplateStyle } from "@/pages/MainPage/utils/get-template-style";
 import useDuplicateFlows from "@/pages/MainPage/hooks/use-handle-duplicate";
 import useAlertStore from "@/stores/alertStore";
 import useSelectOptionsChange from "@/pages/MainPage/hooks/use-select-options-change";
@@ -21,32 +17,6 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 interface DesktopFlowIconProps {
     flowData: FlowType
 }
-
-interface ContextMenuProps {
-  onDelete: Function,
-  onDownload: Function
-  onDuplicate: Function
-}
-
-const ContextMenu = (props: ContextMenuProps) => {
-
-  
-
-    return <>
-      <MenuList className="xp-menu" style={{ position: 'absolute' }}>
-        <MenuListItem   onClick={props.onDownload} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" primary size="sm">Download</MenuListItem>
-        <Separator />
-        <MenuListItem onClick={props.onDuplicate} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Duplicate</MenuListItem>
-        <MenuListItem  onClick={props.onDelete} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs" size="sm">Delete</MenuListItem>
-    
-
-
-      </MenuList>
-
-
-
-    </>
-  }
 
 interface DesktopFlowIconProps {
     flowData: FlowType
@@ -70,22 +40,8 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
     }
   };
 
-
-
-  const descriptionModal = useDescriptionModal([props.flowData?.id], "flow");
-
-    
-
+  const descriptionModal = useDescriptionModal([props.flowData?.id], "flow");    
   const { deleteFlow } = useDeleteFlow();
-
-
-
-
-  const swatchIndex =
-  (props.flowData.gradient && !isNaN(parseInt(props.flowData.gradient))
-    ? parseInt(props.flowData.gradient)
-    : getNumberFromString(props.flowData.gradient ?? props.flowData.id)) %
-  swatchColors.length;
 
   const setSuccessData = useAlertStore((state) => state.setSuccessData);
     const [openDelete, setOpenDelete] = useState(false);
@@ -105,10 +61,7 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
       });
   };
 
-
   const setErrorData = useAlertStore((state) => state.setErrorData);
-
-  const { getIcon } = useGetTemplateStyle(props.flowData);
 
   const { handleDuplicate } = useDuplicateFlows({
     selectedFlowsComponentsCards: [props.flowData.id],
@@ -129,49 +82,27 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
     handleExport,
   );
 
-  
-  const onDownload = (e) => {
-    e.stopPropagation();
-    handleSelectOptionsChange("export");
-  }
-
-  const onDuplicate = (e) => {
-    e.stopPropagation();
-    handleSelectOptionsChange("duplicate");
-  }
-
-  const onDelete = (e) => {
-    e.stopPropagation();
-    setOpenDelete(true);
-  }
-
     return <>
     
     <DesktopIcon label={props.flowData.name} onContextMenu={() => {
         // handleContextMenu
       }}
       onContextMenuNode={({ closeContextMenu }) => (
-        <MenuList className="xp-menu">
-          <MenuListItem onClick={() => {
+        <div className="dropdown">
+          <div className="item bold" onClick={() => {
             handleSelectOptionsChange("export");
             closeContextMenu();
-          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
-            Download
-          </MenuListItem>
-          <Separator />
-          <MenuListItem onClick={() => {
-            handleSelectOptionsChange("duplicate");
-            closeContextMenu();
-          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
-            Duplicate
-          </MenuListItem>
-          <MenuListItem onClick={() => {
-            setOpenDelete(true);
-            closeContextMenu();
-          }} style={{ lineHeight: "1.8", height: "fit-content", fontSize: "12px" }} className="leading-1 text-xs">
-            Delete
-          </MenuListItem>
-        </MenuList>
+          }}>Download</div>
+          <div className="divider horizontal"></div>
+          <div className="item" onClick={() => {
+             handleSelectOptionsChange("duplicate");
+             closeContextMenu();
+          }}>Duplicate</div>
+          <div className="item" onClick={() => {
+             setOpenDelete(true);
+             closeContextMenu();
+          }}>Delete</div>
+        </div>
       )}  
       onDoubleClick={handleClick}
       iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />

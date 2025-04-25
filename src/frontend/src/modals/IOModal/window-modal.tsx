@@ -5,7 +5,7 @@ import { Resizable } from "re-resizable"
 import { Minus, Square, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/utils/utils"
-import { Frame } from "react95"
+// import { Frame } from "react95"
 
 interface WindowsModalProps {
   isOpen: boolean
@@ -192,8 +192,8 @@ export function WindowsModal({
   }
 
   return (
-    <Frame
-        variant="window"
+    <div
+      
       ref={windowRef}
       style={{
         position: "fixed",
@@ -202,7 +202,7 @@ export function WindowsModal({
         zIndex: 50,
         transition: isDragging ? "none" : "box-shadow 0.2s ease",
       }}
-      className={cn(isDragging && "shadow-2xl")}
+      className={"window os-window"}
     >
       <Resizable
         size={size}
@@ -285,7 +285,7 @@ export function WindowsModal({
           </div>
         </div> */}
       </Resizable>
-    </Frame>
+    </div>
   )
 }
 

@@ -4,6 +4,8 @@ import SideBarFoldersButtonsComponent from "@/components/core/folderSidebarCompo
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { useDeleteFolders } from "@/controllers/API/queries/folders";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
+import { DesktopAboutMeIcon } from "@/features/desktop/components/entities/AboutMe/ui";
+import { DesktopNewFlowIcon } from "@/features/desktop/components/entities/NewFlow/ui";
 import useAlertStore from "@/stores/alertStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import { useFolderStore } from "@/stores/foldersStore";
@@ -13,8 +15,6 @@ import { Outlet } from "react-router-dom";
 import useFileDrop from "../hooks/use-on-file-drop";
 import ModalsComponent from "../oldComponents/modalsComponent";
 import EmptyPage from "./emptyPage";
-import { DesktopNewFlowIcon } from "@/features/desktop/components/entities/NewFlow/ui";
-import { DesktopAboutMeIcon } from "@/features/desktop/components/entities/AboutMe/ui";
 
 export default function CollectionPage(): JSX.Element {
   const [openModal, setOpenModal] = useState(false);
@@ -58,69 +58,67 @@ export default function CollectionPage(): JSX.Element {
     );
   };
 
-const ITEM_HEIGHT = 78; // px
-const GAP = 8; // px
-const totalItemHeight = ITEM_HEIGHT + GAP;
+  const ITEM_HEIGHT = 78; // px
+  const GAP = 8; // px
+  const totalItemHeight = ITEM_HEIGHT + GAP;
 
-const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
+  const maxVisibleRows = Math.floor(
+    (window.innerHeight - GAP) / totalItemHeight,
+  );
 
   return (
     <SidebarProvider>
-      <div className={`
-  h-full
-  w-full
-  bg-[#008080]
-`} style={{
-  // backgroundImage: "url(https://i.pinimg.com/736x/f2/4f/64/f24f6477aae49fb93b2042d18cd133f3.jpg)",
-  // backgroundSize: "cover",
-  // imageRendering: "pixelated",
-  filter: "saturate(1.2)",
-  // objectFit: "cover"
-}}>
+      <div
+        className={`h-full w-full bg-[#008080]`}
+        style={{
+          // backgroundImage: "url(https://i.pinimg.com/736x/f2/4f/64/f24f6477aae49fb93b2042d18cd133f3.jpg)",
+          // backgroundSize: "cover",
+          // imageRendering: "pixelated",
+          filter: "saturate(1.2)",
+          // objectFit: "cover"
+        }}
+      >
+        <img
+          src={"https://i.ibb.co/r2RJspsh/pg.jpg"}
+          draggable={false}
+          style={{
+            imageRendering: "pixelated",
+            objectFit: "contain",
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            zIndex: -1,
+            filter:
+              "sepia(0.2) hue-rotate(2deg) brightness(0.9) contrast(1.2) saturate(1.3)",
+            // filter: "sepia(0.2) hue-rotate(10deg) contrast(1.1)",
+          }}
+        />
+        <div className="bg-transparent select-text w-full h-full">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateRows: `repeat(${maxVisibleRows}, min-content)`,
+              gap: `${GAP}px`,
+              gridAutoFlow: "column", // fill top-to-bottom, then left-to-right
+              gridAutoColumns: "min-content", // size each column based on its content
+            }}
+            className={`h-fit w-fit overflow-auto px-4 py-2`}
+          >
+            <Outlet />
+            {/* bg-[#2f7f7f] */}
 
-  <img src={"https://i.ibb.co/r2RJspsh/pg.jpg"} style={{
-  imageRendering: "pixelated",
-  objectFit: "contain",
-  width: "100%",
-  height: "100%",
-  position: "absolute",
-  zIndex: -1,
-  filter: "sepia(0.2) hue-rotate(2deg) brightness(0.9) contrast(1.2) saturate(1.3)"
-  // filter: "sepia(0.2) hue-rotate(10deg) contrast(1.1)",
+            <DesktopNewFlowIcon />
 
-  }} />
-          
-          <div style={{
-            display: "grid",
-            gridTemplateRows: `repeat(${maxVisibleRows}, min-content)`,
-            gap: `${GAP}px`,
-            gridAutoFlow: "column",                     // fill top-to-bottom, then left-to-right
-            gridAutoColumns: "min-content",             // size each column based on its content
-          }} className={`
-              
-             
-              
-  w-full
-  h-full
-  px-4
-  py-2
-  overflow-auto
-            `}>
-      <Outlet />
-  {/* bg-[#2f7f7f] */}
+            <DesktopAboutMeIcon />
 
-      <DesktopNewFlowIcon />
-
-      <DesktopAboutMeIcon />
-
-
-      {/* <DesktopIcon iconSrc="https://win98icons.alexmeub.com/images/computer_explorer-2.png" label="About Me" />             */}
-
-
+            {/* <DesktopIcon iconSrc="https://win98icons.alexmeub.com/images/computer_explorer-2.png" label="About Me" />             */}
           </div>
-  
-          {/* <SideBarFoldersButtonsComponent /> */}
-      {/* {flows &&
+
+        </div>
+
+
+        {/* <SideBarFoldersButtonsComponent /> */}
+        {/* {flows &&
           examples &&
           folders &&
           (flows?.length !== examples?.length || folders?.length > 1) && (
@@ -135,8 +133,6 @@ const maxVisibleRows = Math.floor((window.innerHeight - GAP) / totalItemHeight);
             />
           )} */}
       </div>
-
-
 
       {/* <h1>main page test</h1> */}
       {/* {flows &&

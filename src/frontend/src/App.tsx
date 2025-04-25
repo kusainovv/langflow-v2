@@ -1,5 +1,5 @@
 import "@xyflow/react/dist/style.css";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
 import { LoadingPage } from "./pages/LoadingPage";
 import router from "./routes";
@@ -12,7 +12,6 @@ import original from 'react95/dist/themes/original';
 /* Original Windows95 font (optional) */
 import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
 import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
-
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}

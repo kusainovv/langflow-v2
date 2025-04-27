@@ -4,8 +4,6 @@ import SideBarFoldersButtonsComponent from "@/components/core/folderSidebarCompo
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { useDeleteFolders } from "@/controllers/API/queries/folders";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
-import { DesktopAboutMeIcon } from "@/features/desktop/components/entities/AboutMe/ui";
-import { DesktopNewFlowIcon } from "@/features/desktop/components/entities/NewFlow/ui";
 import useAlertStore from "@/stores/alertStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import { useFolderStore } from "@/stores/foldersStore";
@@ -15,6 +13,11 @@ import { Outlet } from "react-router-dom";
 import useFileDrop from "../hooks/use-on-file-drop";
 import ModalsComponent from "../oldComponents/modalsComponent";
 import EmptyPage from "./emptyPage";
+import background from "../../../../public/assets/wallpapers/background.jpg"
+import { DesktopAboutMeIcon } from "@/features/desktop/components/DesktopIcon/AboutMe/ui";
+import { DesktopNewFlowIcon } from "@/features/desktop/components/DesktopIcon/NewFlow/ui";
+import { DesktopMailIcon } from "@/features/desktop/components/DesktopIcon/Mail/ui";
+import { DesktopGoogleSignInIcon } from "@/features/desktop/components/DesktopIcon/GoogleSignIn/ui";
 
 export default function CollectionPage(): JSX.Element {
   const [openModal, setOpenModal] = useState(false);
@@ -79,7 +82,7 @@ export default function CollectionPage(): JSX.Element {
         }}
       >
         <img
-          src={"https://i.ibb.co/r2RJspsh/pg.jpg"}
+          src={background}
           draggable={false}
           style={{
             imageRendering: "pixelated",
@@ -110,6 +113,10 @@ export default function CollectionPage(): JSX.Element {
             <DesktopNewFlowIcon />
 
             <DesktopAboutMeIcon />
+
+            <DesktopMailIcon />
+
+            <DesktopGoogleSignInIcon />
 
             {/* <DesktopIcon iconSrc="https://win98icons.alexmeub.com/images/computer_explorer-2.png" label="About Me" />             */}
           </div>

@@ -57,9 +57,11 @@ export const DesktopIcon = (props: DesktopIconProps) => {
             // zIndex: 1000,
           }}
         >
-          {props.onContextMenuNode?.({
-      closeContextMenu: () => setMenuPosition(null)
-    })}
+          <div>
+            {props.onContextMenuNode?.({
+              closeContextMenu: () => setMenuPosition(null)
+            })}
+          </div>
         </div>}
     </>
   );

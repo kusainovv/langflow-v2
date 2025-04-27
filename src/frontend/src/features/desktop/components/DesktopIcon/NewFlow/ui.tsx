@@ -3,13 +3,14 @@ import useAddFlow from "@/hooks/flows/use-add-flow";
 import { useParams } from "react-router-dom";
 import { DesktopIcon } from "../../DesktopIcon/ui";
 import { track } from "@/customization/utils/analytics";
+import notepad from "../../../../../../public/assets/icons/apps/notepad.png"
 
 export const DesktopNewFlowIcon = () => {
     const addFlow = useAddFlow();
     const navigate = useCustomNavigate();
     const { folderId } = useParams();
     
-    return <div   onClick={() => {
+    return <div onDoubleClick={() => {
         // setOpenModal(true)
         addFlow().then((id) => {
           navigate(
@@ -19,6 +20,6 @@ export const DesktopNewFlowIcon = () => {
         track("New Flow Created", { template: "Blank Flow" });
     
       }}>
-         <DesktopIcon iconSrc="https://win98icons.alexmeub.com/icons/png/notepad-4.png" label="New Workflow"  />
+         <DesktopIcon iconSrc={notepad} label="New Workflow"  />
       </div>
 }

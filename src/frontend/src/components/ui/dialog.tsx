@@ -2,9 +2,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { cn } from "../../utils/utils";
-import ShadTooltip from "../common/shadTooltipComponent";
-import { Button } from "./button";
-
 const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -72,7 +69,7 @@ const DialogContent = React.forwardRef<
        <div className="window os-window focused">
        <div className="window-titlebar">
           <div className="window-title-area">
-            <span className="window-title">test</span>
+            <span className="window-title">{props.title}</span>
           </div>
 
           <DialogPrimitive.Close asChild>

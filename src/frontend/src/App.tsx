@@ -1,9 +1,9 @@
 import "@xyflow/react/dist/style.css";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import { LoadingPage } from "./pages/LoadingPage";
 import router from "./routes";
-import { MenuList, MenuListItem, Separator, styleReset } from 'react95';
+import { styleReset } from 'react95';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 /* Pick a theme of your choice */
@@ -32,15 +32,16 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+
 export default function App() {
   return <>
     <GlobalStyles />
-    <div className="crt-filter">
-      <ThemeProvider theme={original}>
-        <Suspense fallback={<LoadingPage />}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </ThemeProvider>
-    </div>
+      <div className="crt-filter">
+        <ThemeProvider theme={original}>
+          <Suspense fallback={<LoadingPage />}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </ThemeProvider>
+      </div>
   </>
 }

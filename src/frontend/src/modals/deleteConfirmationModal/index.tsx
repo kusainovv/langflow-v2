@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../components/ui/dialog";
+import remove from "../../../public/assets/icons/actions/remove.png"
 
 export default function DeleteConfirmationModal({
   onConfirm,
@@ -30,11 +31,11 @@ export default function DeleteConfirmationModal({
       {/* <DialogTrigger asChild={asChild} tabIndex={-1}>
         {children}
       </DialogTrigger> */}
-      <DialogContent asChild onInteractOutside={(e) => {
+      <DialogContent title="Delete Alert" asChild onInteractOutside={(e) => {
         e.preventDefault()
       }}>
         <div className="p-4">
-        <DialogHeader>
+        {/* <DialogHeader> */}
           {/* <DialogTitle> */}
             {/* <div className="flex items-center">
               <span className="pr-2">Delete</span>
@@ -44,9 +45,9 @@ export default function DeleteConfirmationModal({
               />
             </div> */}
           {/* </DialogTitle> */}
-        </DialogHeader>
+        {/* </DialogHeader> */}
         <div className="flex mb-4">
-          <img className="mr-4" src="https://98.js.org/images/icons/error-32x32-8bpp.png" />
+          <img className="mr-4" src={remove} />
           <span className="text-sm">
             Are you sure you want to delete the selected{" "}
             {description ?? "component"}?<br></br>

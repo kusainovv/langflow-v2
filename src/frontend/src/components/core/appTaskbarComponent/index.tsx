@@ -21,6 +21,7 @@ import GithubStarComponent from "./components/GithubStarButton";
 import { AspisIcon } from "@/icons/AspisIcon";
 import { ShadowForgeIcon } from "@/icons/ShadowForge";
 import moment from "moment";
+import windows from "../../../../public/assets/icons/ui/windows.png"
 
 export default function AppTaskbar(): JSX.Element {
 
@@ -103,7 +104,7 @@ export default function AppTaskbar(): JSX.Element {
           )} */}
           {/* <ShadowForgeIcon /> */}
           <button className="flex items-center gap-x-1" onClick={() => navigate("/")}>
-            <img src="https://98.js.org/images/start.png" style={{ width: "16px", height: "14px" }} />
+            <img src={windows} style={{ width: "16px", height: "14px" }} />
             <b className="text-xs font-extrabold">Start</b>
             {/* <img style={{ height: "14px", width: "45px" }} src="https://win98icons.alexmeub.com/images/start-button.png" /> */}
             {/* <Button fullWidth className="flex gap-x-1">

@@ -8,11 +8,11 @@ import DeleteConfirmationModal from "@/modals/deleteConfirmationModal";
 import useDescriptionModal from "@/pages/MainPage/hooks/use-description-modal";
 import { FlowType } from "@/types/flow";
 import useDeleteFlow from "@/hooks/flows/use-delete-flow";
-import { DesktopIcon } from "../../DesktopIcon/ui";
+import { DesktopIcon } from "../ui";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import { useParams } from "react-router-dom";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
-
+import folderIcon from "../../../../../../public/assets/icons/apps/folder.png"
 
 interface DesktopFlowIconProps {
     flowData: FlowType
@@ -105,7 +105,7 @@ export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
         </div>
       )}  
       onDoubleClick={handleClick}
-      iconSrc="https://win98icons.alexmeub.com/icons/png/directory_closed_cool-2.png" />
+      iconSrc={folderIcon} />
 
 
 {openDelete &&  <DeleteConfirmationModal

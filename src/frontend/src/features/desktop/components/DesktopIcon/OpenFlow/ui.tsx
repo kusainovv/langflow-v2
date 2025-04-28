@@ -22,7 +22,7 @@ interface DesktopFlowIconProps {
     flowData: FlowType
 }
 
-export const DesktopFlowIcon = (props: DesktopFlowIconProps) => {
+export const DesktopOpenFlowIcon = (props: DesktopFlowIconProps) => {
 
   const navigate = useCustomNavigate();
   const { folderId } = useParams();

@@ -1,6 +1,6 @@
 import useDragStart from "@/components/core/cardComponent/hooks/use-on-drag-start";
 import { FlowType } from "@/types/flow";
-import { DesktopFlowIcon } from "@/features/desktop/components/DesktopIcon/Flow/ui";
+import { DesktopOpenFlowIcon } from "@/features/desktop/components/DesktopIcon/OpenFlow/ui";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
 
@@ -18,7 +18,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         gridAutoRows: "min-content"
       }}
       >
-        <DesktopFlowIcon flowData={flowData} />
+        <DesktopOpenFlowIcon flowData={flowData} />
       </div>
     </>
   );

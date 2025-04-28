@@ -18,6 +18,7 @@ import { DesktopAboutMeIcon } from "@/features/desktop/components/DesktopIcon/Ab
 import { DesktopNewFlowIcon } from "@/features/desktop/components/DesktopIcon/NewFlow/ui";
 import { DesktopMailIcon } from "@/features/desktop/components/DesktopIcon/Mail/ui";
 import { DesktopGoogleSignInIcon } from "@/features/desktop/components/DesktopIcon/GoogleSignIn/ui";
+import { DesktopUploadFlowIcon } from "@/features/desktop/components/DesktopIcon/UploadFlow/ui";
 
 export default function CollectionPage(): JSX.Element {
   const [openModal, setOpenModal] = useState(false);
@@ -113,6 +114,8 @@ export default function CollectionPage(): JSX.Element {
             <DesktopNewFlowIcon />
 
             <DesktopAboutMeIcon />
+
+            <DesktopUploadFlowIcon />
 
             <DesktopMailIcon />
 

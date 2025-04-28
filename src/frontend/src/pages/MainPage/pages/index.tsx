@@ -19,6 +19,7 @@ import { DesktopNewFlowIcon } from "@/features/desktop/components/DesktopIcon/Ne
 import { DesktopMailIcon } from "@/features/desktop/components/DesktopIcon/Mail/ui";
 import { DesktopGoogleSignInIcon } from "@/features/desktop/components/DesktopIcon/GoogleSignIn/ui";
 import { DesktopUploadFlowIcon } from "@/features/desktop/components/DesktopIcon/UploadFlow/ui";
+import { DesktopPhotoBooth } from "@/features/desktop/components/DesktopIcon/Camera/ui";
 
 export default function CollectionPage(): JSX.Element {
   const [openModal, setOpenModal] = useState(false);
@@ -120,6 +121,8 @@ export default function CollectionPage(): JSX.Element {
             <DesktopMailIcon />
 
             <DesktopGoogleSignInIcon />
+
+            <DesktopPhotoBooth />
 
             {/* <DesktopIcon iconSrc="https://win98icons.alexmeub.com/images/computer_explorer-2.png" label="About Me" />             */}
           </div>

@@ -166,9 +166,9 @@
   .button-div-style {
     @apply flex gap-2;
   }
-  .primary-input {
+  /* .primary-input {
     @apply form-input block w-full truncate bg-white px-3 pl-4 text-left text-sm border-none shadow-field focus:ring-0 focus:ring-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-100 
-  }
+  } */
 
   .skeleton-card {
     @apply flex h-48 flex-col gap-6 border bg-silver p-4;
@@ -188,10 +188,10 @@
   }
 
   .input-edit-node {
-    @apply primary-input w-full pb-0.5 pt-0.5 text-left;
+    /* @apply primary-input w-full pb-0.5 pt-0.5 text-left; */
   }
   .input-search {
-    @apply primary-input mx-2 pr-7;
+    /* @apply primary-input mx-2 pr-7; */
   }
   .input-disable {
     @apply border-transparent bg-border;
@@ -486,7 +486,7 @@
     @apply input-edit-node relative pr-8;
   }
   .dropdown-component-false-outline {
-    @apply primary-input py-2 pl-3 pr-10 text-left;
+    /* @apply primary-input py-2 pl-3 pr-10 text-left; */
   }
   .dropdown-component-display {
     @apply block w-full truncate bg-silver;
@@ -532,7 +532,7 @@
     @apply input-edit-node relative pr-8;
   }
   .multiselect-component-false-outline {
-    @apply primary-input py-2 pl-3 pr-10 text-left;
+    /* @apply primary-input py-2 pl-3 pr-10 text-left; */
   }
 
   .edit-flow-arrangement {
@@ -1255,7 +1255,7 @@
   }
 
   .playground-btn-flow-toolbar {
-    @apply relative inline-flex h-8 w-full items-center justify-center gap-1.5 px-3 py-1.5 text-sm   transition-all duration-500 ease-in-out text-black;
+    @apply relative inline-flex w-full items-center justify-center gap-1.5 px-3 py-1.5 text-sm   transition-all duration-500 ease-in-out text-black;
   }
 
   .input-slider-text {

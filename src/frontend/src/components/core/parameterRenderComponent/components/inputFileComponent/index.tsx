@@ -12,6 +12,7 @@ import useFlowsManagerStore from "../../../../../stores/flowsManagerStore";
 import IconComponent from "../../../../common/genericIconComponent";
 import { Button } from "../../../../ui/button";
 import { FileComponentType, InputProps } from "../../types";
+import { Input } from "@/components/ui/input";
 
 export default function InputFileComponent({
   value,
@@ -96,11 +97,11 @@ export default function InputFileComponent({
         <div className="flex items-center gap-2.5">
           <div className="relative flex w-full">
             <div className="w-full">
-              <input
+              <Input
                 data-testid="input-file-component"
                 type="text"
                 className={cn(
-                  "primary-input h-9 w-full cursor-pointer text-sm focus:border-border min-h-[32px] focus:outline-none focus:ring-0",
+                  " h-9 w-full cursor-pointer text-sm focus:border-border min-h-[32px] focus:outline-none focus:ring-0",
                   !value && "",
                   editNode && "w-full h-6",
                 )}

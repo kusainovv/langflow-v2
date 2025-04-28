@@ -1,5 +1,5 @@
 import { ForwardedIconComponent } from "@/components/common/genericIconComponent";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { memo } from "react";
 import ShortcutDisplay from "../../../nodeToolbarComponent/shortcutDisplay";
 
@@ -19,12 +19,12 @@ export const SearchInput = memo(function SearchInput({
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="relative w-full flex-1 bg-green-500">
+    <div className="relative w-full flex-1">
       <ForwardedIconComponent
         name="Search"
         className="absolute inset-y-0 left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-black"
       />
-      <Input
+      <input
         ref={searchInputRef}
         type="search"
         data-testid="sidebar-search-input"

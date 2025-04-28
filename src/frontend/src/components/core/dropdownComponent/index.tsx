@@ -89,7 +89,7 @@ export default function Dropdown({
           editNode
             ? "dropdown-component-outline input-edit-node"
             : "dropdown-component-false-outline py-2",
-          "w-full justify-between font-normal bg-white shadow-field px-2 items-center flex justify-between min-h-[36px]",
+          "w-full justify-between font-normal bg-white shadow-field px-2 items-center flex justify-between min-h-[24px]",
         )}
       >
         <span className="truncate" data-testid={`value-dropdown-${id}`}>

@@ -55,7 +55,7 @@ export default function IntComponent({
   const getInputClassName = () => {
     return cn(
       editNode ? "input-edit-node" : "",
-      "nopan nodelete nodrag noflow primary-input min-h-[36px] w-full ",
+      "nopan nodelete nodrag noflow primary-input min-h-[24px] w-full ",
     );
   };
 

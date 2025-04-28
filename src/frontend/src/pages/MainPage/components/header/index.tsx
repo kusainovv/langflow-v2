@@ -1,7 +1,7 @@
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useState } from "react";
@@ -95,7 +95,7 @@ const HeaderComponent = ({
           {/* Search and filters */}
           <div className="flex justify-between">
             <div className="flex w-full xl:w-5/12">
-              <Input
+              <input
                 icon="Search"
                 data-testid="search-store-input"
                 type="text"

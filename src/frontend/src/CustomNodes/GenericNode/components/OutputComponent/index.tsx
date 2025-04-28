@@ -27,7 +27,7 @@ export default function OutputComponent({
   return displayProxy(
     <span
       className={cn(
-        "text-[13px] font-medium",
+        "",
         isToolMode && "text-black",
         frozen ? "text-black" : "",
       )}

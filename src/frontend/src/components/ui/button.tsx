@@ -6,7 +6,7 @@ import ForwardedIconComponent from "../common/genericIconComponent";
 
 // here is settings for button
 const buttonVariants = cva(
-  "noflow nopan nodelete nodrag inline-flex items-center bg-silver justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-100 disabled:disabled-state [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-button", // bg-blue-300
+  // "noflow nopan nodelete nodrag inline-flex items-center bg-silver justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-100 disabled:disabled-state [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-button", // bg-blue-300
   {
     variants: {
       variant: {
@@ -37,12 +37,12 @@ const buttonVariants = cva(
         iconMd: "", // p-1.5
         icon: "", // p-1
         iconSm: "", // p-0.5
-        "node-toolbar": "", // py-[6px] px-[6px]
+        "": "", // node-toolbar py-[6px] px-[6px]
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      // variant: "default",
+      // size: "default",
     },
   },
 );

@@ -124,7 +124,7 @@ export default function FlowToolbar(): JSX.Element {
             "hover:shadow-round-btn-shadow flex items-center justify-center gap-7 border bg-silver p-1 shadow transition-all"
           }
         >
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-start gap-1.5">
             <div className="flex h-full w-full gap-1.5   transition-all">
               <PlaygroundButton
                 hasIO={hasIO}
@@ -144,14 +144,15 @@ export default function FlowToolbar(): JSX.Element {
                     >
                       <Button
                         className={classNames(
-                          "relative inline-flex h-full w-full items-center justify-center gap-1.5 text-sm transition-all duration-150 ease-in-out",
+                          "flex px-1 gap-1"
+                          // "relative inline-flex h-full w-full items-center justify-center gap-1.5 text-sm transition-all duration-150 ease-in-out",
                         )}
                       >
                         <ForwardedIconComponent
                           name="Code2"
                           className={"h-4 w-4 text-black"}
                         />
-                        <span className="hidden md:block text-black">API</span>
+                        <span className="">API</span>
                       </Button>
                     </ApiModal>
                   )}

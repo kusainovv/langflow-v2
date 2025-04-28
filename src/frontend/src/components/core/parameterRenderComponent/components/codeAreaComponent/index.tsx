@@ -9,7 +9,7 @@ import { InputProps } from "../../types";
 const codeContentClasses = {
   base: "overflow-hidden text-clip whitespace-nowrap",
   editNode: "input-edit-node input-dialog",
-  normal: "primary-input   ",
+  normal: "  ", // primary-input 
   disabled: "disabled-state",
 };
 

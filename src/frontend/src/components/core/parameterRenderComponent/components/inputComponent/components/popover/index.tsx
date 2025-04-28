@@ -7,6 +7,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
@@ -115,7 +116,7 @@ const getInputClassName = (
   selectedOptions: string[],
 ) => {
   return cn(
-    "popover-input nodrag w-full truncate px-1 pr-4 min-h-[36px]",
+    "popover-input nodrag w-full truncate px-1 pr-4 min-h-[24px]",
     editNode && "px-2",
     editNode && disabled && "h-fit w-fit",
     disabled &&
@@ -131,13 +132,13 @@ const getAnchorClassName = (
   isFocused: boolean,
 ) => {
   return cn(
-    "primary-input noflow nopan nodelete nodrag flex h-full cursor-default flex-wrap items-center px-2 ",
-    editNode && "min-h-7 p-0 pl-4",
+    "noflow nopan nodelete nodrag flex h-full cursor-default flex-wrap items-center", // px-2 
+    // editNode && "min-h-7 p-0 pl-4",
     editNode && disabled && "min-h-5",
     disabled && "    ",
     isFocused &&
       "ring-1 ring-foreground hover:border-foreground",
-    "min-h-[36px] py-0"
+    "min-h-[24px] py-0"
   );
 };
 
@@ -236,7 +237,7 @@ const CustomInputPopover = ({
           ) : null}
 
           {!selectedOption?.length && !selectedOptions?.length && (
-            <input
+            <Input
               autoComplete="off"
               onFocus={() => setIsFocused(true)}
               autoFocus={autoFocus}

@@ -19,6 +19,7 @@ import {
   PopoverTrigger,
 } from "../../../../ui/popover";
 import { InputProps, MultiselectComponentType } from "../../types";
+import { Input } from "@/components/ui/input";
 
 export default function MultiselectComponent({
   disabled,
@@ -141,7 +142,7 @@ export default function MultiselectComponent({
         name="search"
         className="mr-2 h-4 w-4 shrink-0 opacity-50"
       />
-      <input
+      <Input
         onChange={(event) => {
           setSearchValue(event.target.value);
         }}

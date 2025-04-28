@@ -98,7 +98,7 @@ const KeypairListComponent = ({
         }
         data-testid={id}
         className={cn(
-          "hit-area-icon group flex items-center justify-center min-h-[36px] shadow-button",
+          "hit-area-icon group flex items-center justify-center min-h-[24px] shadow-button",
           disabled
             ? "pointer-events-none bg-silver hover:bg-silver"
             : "",

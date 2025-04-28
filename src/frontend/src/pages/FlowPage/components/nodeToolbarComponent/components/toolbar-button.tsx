@@ -24,14 +24,13 @@ export const ToolbarButton = memo(
   }) => (
     <ShadTooltip content={<ShortcutDisplay {...shortcut} />} side="top">
       <Button
-        className={cn("node-toolbar-buttons", className)}
-        variant="ghost"
+      className="whitespace-nowrap"
+        // className={cn("node-toolbar-buttons", className)}
         onClick={onClick}
-        size="node-toolbar"
         data-testid={dataTestId}
       >
         {/* <ForwardedIconComponent name={icon} className="h-4 w-4" /> */}
-        {label && <span className="text-[13px] font-medium">{label}</span>}
+        {label && <span>{label}</span>}
       </Button>
     </ShadTooltip>
   ),

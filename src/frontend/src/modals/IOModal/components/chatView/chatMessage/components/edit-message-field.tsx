@@ -54,7 +54,6 @@ export default function EditMessageField({
               Save
             </Button>
             <Button
-              variant={"secondary"}
               data-testid="cancel-button"
               onMouseDown={() => setIsButtonClicked(true)}
               onClick={() => {
@@ -66,7 +65,7 @@ export default function EditMessageField({
               Cancel
             </Button>
           </div>
-          <div className="text-[13px] font-medium    word-break-break-word">
+          <div className="word-break-break-word">
             Editing messages will update the memory but won't restart the
             conversation.
           </div>

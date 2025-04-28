@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
 export default function App() {
   return <>
     <GlobalStyles />
+    
       <div className="crt-filter">
         <ThemeProvider theme={original}>
           <Suspense fallback={<LoadingPage />}>

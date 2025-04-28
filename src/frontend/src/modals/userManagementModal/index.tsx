@@ -112,7 +112,7 @@ export default function UserManagementModal({
                     setUserName(value);
                   }}
                   value={username}
-                  className="primary-input"
+                  className="" // primary-input
                   required
                   placeholder="Username"
                 />
@@ -163,7 +163,7 @@ export default function UserManagementModal({
                         setPassword(value);
                       }}
                       value={password}
-                      className="primary-input"
+                      className="" // primary-input
                       required={data ? false : true}
                       type={pwdVisible ? "text" : "password"}
                     />
@@ -224,7 +224,7 @@ export default function UserManagementModal({
                         setConfirmPassword(input.target.value);
                       }}
                       value={confirmPassword}
-                      className="primary-input"
+                      className="" // primary-input
                       required={data ? false : true}
                       type={confirmPwdVisible ? "text" : "password"}
                     />

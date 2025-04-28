@@ -7,49 +7,50 @@ import { Input } from "../../../../ui/input";
 import { getPlaceholder } from "../../helpers/get-placeholder-disabled";
 import { InputProps, TextAreaComponentType } from "../../types";
 import { getIconName } from "../inputComponent/components/helpers/get-icon-name";
+import { Button } from "@/components/ui/button";
 
-const inputClasses = {
-  base: ({ isFocused, password }: { isFocused: boolean; password: boolean }) =>
-    `w-full ${isFocused ? "" : "pr-3"} ${password ? "pr-16" : ""}`,
-  editNode: "input-edit-node",
-  normal: ({ isFocused }: { isFocused: boolean }) =>
-    `primary-input ${isFocused ? "text-black" : "  "}`,
-  disabled: "disabled-state",
-  password: "password",
-};
+// const inputClasses = {
+//   base: ({ isFocused, password }: { isFocused: boolean; password: boolean }) =>
+//     `w-full ${isFocused ? "" : "pr-3"} ${password ? "pr-16" : ""}`,
+//   editNode: "input-edit-node",
+//   normal: ({ isFocused }: { isFocused: boolean }) =>
+//     ` ${isFocused ? "text-black" : "  "}`, // primary-input
+//   disabled: "disabled-state",
+//   password: "password",
+// };
 
-const externalLinkIconClasses = {
-  gradient: ({
-    disabled,
-    editNode,
-    password,
-  }: {
-    disabled: boolean;
-    editNode: boolean;
-    password: boolean;
-  }) =>
-    disabled || password
-      ? ""
-      : editNode
-        ? "gradient-fade-input-edit-node"
-        : "gradient-fade-input",
-  background: ({
-    disabled,
-    editNode,
-  }: {
-    disabled: boolean;
-    editNode: boolean;
-  }) =>
-    disabled
-      ? ""
-      : editNode
-        ? "background-fade-input-edit-node"
-        : "background-fade-input",
-  icon: "icons-parameters-comp absolute right-3 h-4 w-4 shrink-0",
-  editNodeTop: "top-[-1.4rem] h-5",
-  normalTop: "top-[-2.1rem] h-7",
-  iconTop: "top-[-1.7rem]",
-};
+// const externalLinkIconClasses = {
+//   gradient: ({
+//     disabled,
+//     editNode,
+//     password,
+//   }: {
+//     disabled: boolean;
+//     editNode: boolean;
+//     password: boolean;
+//   }) =>
+//     disabled || password
+//       ? ""
+//       : editNode
+//         ? "gradient-fade-input-edit-node"
+//         : "gradient-fade-input",
+//   background: ({
+//     disabled,
+//     editNode,
+//   }: {
+//     disabled: boolean;
+//     editNode: boolean;
+//   }) =>
+//     disabled
+//       ? ""
+//       : editNode
+//         ? "background-fade-input-edit-node"
+//         : "background-fade-input",
+//   icon: "icons-parameters-comp absolute right-3 h-4 w-4 shrink-0",
+//   editNodeTop: "top-[-1.4rem] h-5",
+//   normalTop: "top-[-2.1rem] h-7",
+//   iconTop: "top-[-1.7rem]",
+// };
 
 export default function TextAreaComponent({
   value,
@@ -76,7 +77,7 @@ export default function TextAreaComponent({
     //   isFocused && "pr-10",
     // );
     return cn(
-      "primary-input"
+      "" // primary-input
     )
   };
 
@@ -97,7 +98,7 @@ export default function TextAreaComponent({
             // editNode
             //   ? externalLinkIconClasses.editNodeTop
             //   : externalLinkIconClasses.normalTop,
-            "gradient-fade-input"
+            // "gradient-fade-input"
           )}
           // style={{
           //   pointerEvents: "none",
@@ -115,7 +116,7 @@ export default function TextAreaComponent({
         dataTestId={`button_open_text_area_modal_${id}${editNode ? "_advanced" : ""}`}
         name={getIconName(disabled, "", "", false, isToolMode) || "Scan"}
         className={cn(
-           "icons-parameters-comp absolute right-3 h-4 w-4 shrink-0 top-1/2 -translate-y-1/2 h-full",
+          //  "icons-parameters-comp h-4 w-4 shrink-0 top-1/2 -translate-y-1/2 h-full",
           // "cursor-pointer",
           // externalLinkIconClasses.icon,
           // editNode
@@ -133,7 +134,7 @@ export default function TextAreaComponent({
   );
 
   return (
-    <div className={"relative w-full"}>
+    <div className={"relative flex items-center w-full"}>
       <Input
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -154,9 +155,16 @@ export default function TextAreaComponent({
         value={value}
         setValue={(newValue) => handleOnNewValue({ value: newValue })}
         disabled={disabled}
-      >{renderIcon()}
+      >
+
+        <Button className="h-full px-1">
+          {renderIcon()}
+        </Button>
+
+        {/* {renderIcon()} */}
         {/* <div className="relative w-full">{renderIcon()}</div> */}
       </ComponentTextModal>
+
       {/* <ComponentTextModal
         changeVisibility={updateVisibility}
         value={value}

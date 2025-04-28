@@ -514,28 +514,28 @@ const NodeToolbarComponent = memo(
               }
               side="top"
             >
-              <Button
-                className={cn(
-                  "node-toolbar-buttons h-[2rem]",
-                  toolMode && "text-black",
-                )}
-                variant="ghost"
+              <div
+                // className={cn(
+                //   "node-toolbar-buttons h-[2rem]",
+                //   toolMode && "text-black",
+                // )}
+                
                 onClick={(event) => {
                   event.preventDefault();
                   takeSnapshot();
                   handleSelectChange("toolMode");
                 }}
-                size="node-toolbar"
+                className="flex items-center px-2 text-xs"
                 data-testid="tool-mode-button"
               >
-                <IconComponent
+                {/* <IconComponent
                   name="Hammer"
                   className={cn(
                     "h-4 w-4 transition-all",
                     toolMode ? "text-black" : "",
                   )}
-                />
-                <span className="text-[13px] font-medium">Tool Mode</span>
+                /> */}
+                <span className="whitespace-nowrap">Tool Mode</span>
                 <ToggleShadComponent
                   value={toolMode}
                   editNode={false}
@@ -548,7 +548,7 @@ const NodeToolbarComponent = memo(
                   showToogle={false}
                   id="tool-mode-toggle"
                 />
-              </Button>
+              </div>
             </ShadTooltip>
           )}
         </>
@@ -769,7 +769,7 @@ const NodeToolbarComponent = memo(
                       name="Trash2"
                       className="relative top-0.5 mr-2 h-4 w-4"
                     />{" "}
-                    <span className="">Delete</span>{" "}
+                    <span>Delete</span>{" "}
                     <span
                       className={`absolute right-2 top-2 flex items-center justify-center px-1 py-[0.2]`}
                     >

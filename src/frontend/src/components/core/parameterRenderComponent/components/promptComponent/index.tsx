@@ -5,12 +5,12 @@ import IconComponent from "../../../../common/genericIconComponent";
 import { Button } from "../../../../ui/button";
 import { getPlaceholder } from "../../helpers/get-placeholder-disabled";
 import { InputProps, PromptAreaComponentType } from "../../types";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 
 const promptContentClasses = {
   base: "overflow-hidden text-clip whitespace-nowrap",
   editNode: "input-edit-node input-dialog",
-  normal: "primary-input   ",
+  normal: "", // primary-input   
   disabled: "",
 };
 
@@ -56,11 +56,11 @@ export default function PromptAreaComponent({
   readonly = false,
 }: InputProps<string, PromptAreaComponentType>): JSX.Element {
   const renderPromptText = () => (
-    <Input
+    <input
       id={id}
       data-testid={id}
       className={cn(
-        "primary-input"
+        "" // primary-input
         // promptContentClasses.base,
         // editNode ? promptContentClasses.editNode : promptContentClasses.normal,
         // disabled && !editNode && promptContentClasses.disabled,

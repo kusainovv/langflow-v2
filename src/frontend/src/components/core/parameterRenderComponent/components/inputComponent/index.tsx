@@ -57,7 +57,7 @@ export default function InputComponent({
   }
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full flex">
       {isForm ? (
         <Form.Control asChild>
           <Input
@@ -96,7 +96,7 @@ export default function InputComponent({
           />
         </Form.Control>
       ) : (
-        <>
+        <div className="bg-red-500 w-full">
           {isObjectOption ? (
             // Content to render when isObjectOption is true
             <CustomInputPopoverObject
@@ -154,18 +154,32 @@ export default function InputComponent({
               popoverWidth={popoverWidth}
             />
           )}
-        </>
+        </div>
       )}
 
       {(setSelectedOption || setSelectedOptions) && (
-        <span
+        <button
           className={cn(
-            password && selectedOption === "" ? "right-8" : "right-0",
-            "absolute inset-y-0 flex items-center pr-2.5",
+            "px-1",
+            // password && selectedOption === "" ? "right-8" : "right-0",
+            // "absolute inset-y-0 flex items-center pr-2.5",
             disabled && "cursor-not-allowed opacity-50",
           )}
+          disabled={disabled}
+          onClick={(e) => {
+            if (disabled) return;
+            setShowOptions(!showOptions);
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          // className={cn(
+          //   onChange && setSelectedOption && selectedOption !== ""
+          //     ? "text-white"
+          //     : "",
+          //   !disabled && "hover:text-foreground",
+          // )}
         >
-          <button
+          {/* <button
             disabled={disabled}
             onClick={(e) => {
               if (disabled) return;
@@ -179,7 +193,7 @@ export default function InputComponent({
                 : "",
               !disabled && "hover:text-foreground",
             )}
-          >
+          > */}
             <ForwardedIconComponent
               name={
                 getIconName(
@@ -197,8 +211,8 @@ export default function InputComponent({
               strokeWidth={ICON_STROKE_WIDTH}
               aria-hidden="true"
             />
-          </button>
-        </span>
+          {/* </button> */}
+        </button>
       )}
 
       {password && (!setSelectedOption || selectedOption === "") && (
@@ -206,10 +220,12 @@ export default function InputComponent({
           type="button"
           tabIndex={-1}
           className={classNames(
-            "mb-px mr-3 p-0",
-            editNode
-              ? "input-component-true-button"
-              : "input-component-false-button",
+            "px-1",
+            ""
+            // "mb-px mr-3 p-0",
+            // editNode
+            //   ? "input-component-true-button"
+            //   : "input-component-false-button",
           )}
           onClick={(event) => {
             event.preventDefault();
@@ -219,12 +235,12 @@ export default function InputComponent({
           {pwdVisible ? (
             <ForwardedIconComponent
               name="Eye"
-              className="relative top-[1px] h-5 w-5 hover:text-foreground"
+              className="relative top-[1px] w-5 hover:text-foreground"
             />
           ) : (
             <ForwardedIconComponent
               name="EyeOff"
-              className="relative top-[1px] h-5 w-5 hover:text-foreground"
+              className="relative top-[1px] w-5 hover:text-foreground"
             />
           )}
         </button>
